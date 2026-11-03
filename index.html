@@ -22,6 +22,7 @@
       align-items: center;
       min-height: 100vh;
       color: #2b2326;
+      overflow: hidden;
     }
 
     /* BINGKAI HP IPHONE */
@@ -37,6 +38,21 @@
       overflow: hidden;
       display: flex;
       flex-direction: column;
+    }
+
+    /* EFEK PARTIKEL HATI SAAT KLIK LAYAR */
+    .tap-heart {
+      position: absolute;
+      font-size: 20px;
+      pointer-events: none;
+      z-index: 9999;
+      animation: floatUp 0.9s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translate(-50%, -50%) scale(0.6) rotate(0deg); opacity: 1; }
+      50% { transform: translate(-50%, -100px) scale(1.2) rotate(-15deg); opacity: 0.9; }
+      100% { transform: translate(-50%, -150px) scale(1.4) rotate(15deg); opacity: 0; }
     }
 
     /* DYNAMIC ISLAND */
@@ -263,7 +279,6 @@
 
     .unread-dot { width: 9px; height: 9px; background: #007aff; border-radius: 50%; margin-right: -4px; }
 
-    /* CONVERSATION BUBBLES */
     .chat-detail-view { display: none; flex-direction: column; height: 100%; background: #ffffff; position: relative; }
     .contact-center { display: flex; flex-direction: column; align-items: center; text-align: center; }
     .contact-circle { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; margin-bottom: 2px; }
@@ -384,7 +399,7 @@
     }
     .shutter-inner { width: 100%; height: 100%; background: #fff; border-radius: 50%; }
 
-    /* === 5. APP: NOTES DENGAN KUIS OPSI A / B === */
+    /* === 5. APP: NOTES (KUIS OPSI A) === */
     .quiz-gate {
       background: #fff; border-radius: 24px; padding: 22px 18px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.06); text-align: center;
@@ -413,11 +428,12 @@
     .journal-card h4 { font-size: 14.5px; font-weight: 700; color: #2b2326; margin-bottom: 6px; }
     .journal-card p { font-size: 12.5px; color: #5c4f53; line-height: 1.6; }
 
-    /* === 6. APP: GALERI 5 SLIDES CAROUSEL (.JPG) === */
+    /* === 6. APP: GALERI (KUIS OPSI B & CAROUSEL FULLSCREEN) === */
     .slider-container {
-      position: relative; width: 100%; height: 460px;
-      margin: 15px 0; overflow: hidden; border-radius: 24px;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.1); background: #fff;
+      position: relative; width: 100%; height: 500px;
+      margin: 10px 0 15px; overflow: hidden; border-radius: 24px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.08); background: #fff;
+      border: 1px solid #ebd9dc;
     }
     .slide-item {
       position: absolute; inset: 0; opacity: 0;
@@ -428,31 +444,75 @@
     .slide-item.active {
       opacity: 1; pointer-events: auto; transform: scale(1);
     }
-    .slide-item img {
-      width: 100%; height: 350px; object-fit: cover;
+    
+    .chat-img-frame {
+      position: relative; width: 100%; height: 380px;
+      background: #f7f7f8; display: flex; align-items: center; justify-content: center;
+      cursor: zoom-in; overflow: hidden;
     }
+    .chat-img-frame img {
+      width: 100%; height: 100%; object-fit: contain;
+      transition: transform 0.25s;
+    }
+    .chat-img-frame:active img { transform: scale(1.02); }
+    
+    .zoom-hint {
+      position: absolute; bottom: 10px; right: 12px;
+      background: rgba(0,0,0,0.65); color: #fff; font-size: 10.5px;
+      padding: 4px 10px; border-radius: 20px; font-weight: 600;
+      backdrop-filter: blur(8px); display: flex; align-items: center; gap: 4px;
+    }
+
     .slide-caption {
-      padding: 16px; background: #fff; flex: 1; text-align: center;
+      padding: 12px 16px; background: #fff; flex: 1; text-align: center;
       display: flex; flex-direction: column; justify-content: center;
+      border-top: 1px solid #f2e2e5;
     }
-    .slide-caption h4 { font-size: 14px; color: #82384e; margin-bottom: 4px; }
-    .slide-caption p { font-size: 11.5px; color: #666; }
+    .slide-caption h4 { font-size: 13.5px; color: #82384e; margin-bottom: 4px; }
+    .slide-caption p { font-size: 11.5px; color: #555; font-style: italic; font-family: 'Playfair Display', serif; }
 
     .slider-nav {
       display: flex; justify-content: space-between; align-items: center;
-      margin-top: 10px; padding: 0 10px;
+      margin-top: 5px; padding: 0 10px;
     }
     .nav-arrow {
       width: 40px; height: 40px; border-radius: 50%; background: #fff;
-      border: 1px solid #ebd9dc; color: #82384e; font-size: 18px;
+      border: 1.5px solid #ebd9dc; color: #82384e; font-size: 20px;
       font-weight: 700; display: flex; align-items: center; justify-content: center;
-      cursor: pointer; box-shadow: 0 3px 8px rgba(0,0,0,0.06);
+      cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.06);
     }
+    .nav-arrow:active { transform: scale(0.92); }
     .nav-dots { display: flex; gap: 6px; }
     .nav-dot { width: 8px; height: 8px; border-radius: 50%; background: #ddd; transition: all 0.2s; }
-    .nav-dot.active { width: 20px; border-radius: 10px; background: #82384e; }
+    .nav-dot.active { width: 22px; border-radius: 10px; background: #82384e; }
 
-    /* === 7. APP: SURAT PANJANG FULL ENGLISH + FOTO SURAT.JPG === */
+    /* LIGHTBOX / FULLSCREEN IMAGE VIEWER */
+    #imageLightbox {
+      display: none; position: absolute; inset: 0;
+      background: rgba(0,0,0,0.92); backdrop-filter: blur(15px);
+      z-index: 3000; flex-direction: column; padding: 40px 16px 25px;
+      animation: fadeIn 0.25s ease;
+    }
+    .lightbox-close {
+      align-self: flex-end; color: #fff; font-size: 14px;
+      font-weight: 700; cursor: pointer; padding: 6px 14px;
+      background: rgba(255,255,255,0.2); border-radius: 20px; margin-bottom: 12px;
+    }
+    .lightbox-img-wrap {
+      flex: 1; display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    .lightbox-img-wrap img {
+      max-width: 100%; max-height: 100%; object-fit: contain;
+      border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+    }
+    .lightbox-caption {
+      color: #fff; text-align: center; font-size: 12px;
+      font-style: italic; font-family: 'Playfair Display', serif;
+      padding-top: 14px; line-height: 1.5; opacity: 0.9;
+    }
+
+    /* === 7. APP: SURAT (PANJANG, FULL ENGLISH + surat.jpg) === */
     .letter-paper {
       background: #ffffff; border-radius: 24px; padding: 24px 18px;
       box-shadow: 0 12px 30px rgba(130, 56, 78, 0.08); border: 1px solid #f2e2e5;
@@ -494,6 +554,7 @@
     @keyframes shake { 0%, 100% { transform: translateX(0); } 20%, 60% { transform: translateX(-8px); } 40%, 80% { transform: translateX(8px); } }
     @keyframes slideDown { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
     @keyframes scanLaser { 0% { top: 12%; opacity: 0.3; } 100% { top: 86%; opacity: 1; } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     .shake { animation: shake 0.35s; }
   </style>
 </head>
@@ -504,7 +565,7 @@
     <source src="lagu.flac" type="audio/flac">
   </audio>
 
-  <div class="phone">
+  <div class="phone" id="phoneContainer">
     <div class="island"></div>
 
     <!-- TOMBOL PLAY / PAUSE LAGU -->
@@ -523,7 +584,6 @@
         <div class="lock-time">14:30</div>
         <div class="lock-date">Senin, 5 Bulan Bersama ❤️</div>
 
-        <!-- NOTIFIKASI DI-HACK -->
         <div class="lock-notif" onclick="showPasscode()">
           <div class="notif-tag">
             <span>⚠️ SECURITY THREAT • Messages</span>
@@ -738,7 +798,7 @@
       </div>
     </div>
 
-    <!-- 5. APP: NOTES (KUIS OPSI A / B + NOTIF KECIL KE GALERI) -->
+    <!-- 5. APP: NOTES (KUIS OPSI A + NOTIF KECIL KE GALERI) -->
     <div class="screen app-window" id="notesApp">
       <div class="top-floating-banner" id="notesTopNotif" onclick="openApp('galleryApp')">
         <p style="font-size: 11px; color: #ff3b30; font-weight: 700; margin-bottom: 2px;">⚠️ SYSTEM INSTRUCTION • Messages</p>
@@ -762,6 +822,7 @@
           </div>
 
           <div class="quiz-options">
+            <!-- JAWABAN BENAR: OPSI A -->
             <button class="quiz-btn" onclick="answerNotesQuiz(true)">
               A. Karena dari awal capernya si bawel bikin candu, dan senyumnya selalu jadi tempat pulang paling nyaman buat Pandu.
             </button>
@@ -806,7 +867,7 @@
       </div>
     </div>
 
-    <!-- 6. APP: GALERI (5 SLIDES FORMAT .JPG) -->
+    <!-- 6. APP: GALERI (DIKUNCI KUIS OPSI B + FULLSCREEN LIGHTBOX) -->
     <div class="screen app-window" id="galleryApp">
       <div class="app-header">
         <span class="back-btn" onclick="goHome()">‹ Home</span>
@@ -815,74 +876,123 @@
       </div>
 
       <div class="app-body">
-        <div class="slider-container" id="sliderContainer">
-          <!-- SLIDE 1 (galeri1.jpg) -->
-          <div class="slide-item active">
-            <img src="galeri1.jpg" onerror="this.src='foto1.jpeg'" alt="Slide 1">
-            <div class="slide-caption">
-              <h4>Slide 01 • The Beginning</h4>
-              <p>"Dari yang awalnya saling sebel, sampai jadi orang yang paling ditunggu kabarnya."</p>
-            </div>
+        <!-- KUIS PENGUNCI GALERI (JAWABAN BENAR ADALAH OPSI B) -->
+        <div class="quiz-gate" id="galleryQuizGate">
+          <div style="font-size: 32px; margin-bottom: 8px;">🔐</div>
+          <h3>Akses Galeri Terenkripsi</h3>
+          <p>Tebak pertanyaan ini untuk membuka berkas tangkapan layar chat berharga kita:</p>
+          
+          <div style="background: #faf4f5; padding: 14px; border-radius: 14px; margin-bottom: 18px; border: 1px dashed #ebd9dc; font-size: 13px; font-weight: 600; color: #82384e;">
+            "Dari jutaan pesan obrolan kita selama 5 bulan, hal apa dari Eyaa yang paling bikin Pandu gak bisa tidur dan kangen terus?"
           </div>
 
-          <!-- SLIDE 2 (galeri2.jpg) -->
-          <div class="slide-item">
-            <img src="galeri2.jpg" onerror="this.src='foto2.jpeg'" alt="Slide 2">
-            <div class="slide-caption">
-              <h4>Slide 02 • That Unforgettable Smile</h4>
-              <p>"Momen PAP legendaris yang ngeruntuhin seluruh rasa gengsi gue."</p>
-            </div>
-          </div>
-
-          <!-- SLIDE 3 (galeri3.jpg) -->
-          <div class="slide-item">
-            <img src="galeri3.jpg" onerror="this.src='foto3.jpeg'" alt="Slide 3">
-            <div class="slide-caption">
-              <h4>Slide 03 • 10-05-26</h4>
-              <p>"Titik di mana kita memutuskan buat melangkah berdua, ngelewatin semua hal bareng."</p>
-            </div>
-          </div>
-
-          <!-- SLIDE 4 (galeri4.jpg) -->
-          <div class="slide-item">
-            <img src="galeri4.jpg" onerror="this.src='foto4.jpeg'" alt="Slide 4">
-            <div class="slide-caption">
-              <h4>Slide 04 • Silly Fights & Sweet Hugs</h4>
-              <p>"Debat hal sepele tiap hari, tapi ga pernah sedetik pun pengen udahan."</p>
-            </div>
-          </div>
-
-          <!-- SLIDE 5 (galeri5.jpg) -->
-          <div class="slide-item">
-            <img src="galeri5.jpg" onerror="this.src='foto5.jpeg'" alt="Slide 5">
-            <div class="slide-caption">
-              <h4>Slide 05 • 150 Days With You</h4>
-              <p>"Terima kasih sudah bertahan sampai hari ini, si bawel kesayangan Pandu."</p>
-            </div>
+          <div class="quiz-options">
+            <!-- OPSI A: SALAH -->
+            <button class="quiz-btn" onclick="answerGalleryQuiz(false)">
+              A. Kebiasaan ngambek dan ngancem mau blok nomor Pandu tiap kalah debat sepele.
+            </button>
+            <!-- OPSI B: BENAR! -->
+            <button class="quiz-btn" onclick="answerGalleryQuiz(true)">
+              B. Kebiasaan tiba-tiba ngirim chat perhatian manis dan pap gemes di saat Pandu lagi capek-capeknya.
+            </button>
           </div>
         </div>
 
-        <div class="slider-nav">
-          <div class="nav-arrow" onclick="moveSlide(-1)">‹</div>
-          <div class="nav-dots" id="sliderDots">
-            <div class="nav-dot active"></div>
-            <div class="nav-dot"></div>
-            <div class="nav-dot"></div>
-            <div class="nav-dot"></div>
-            <div class="nav-dot"></div>
-          </div>
-          <div class="nav-arrow" onclick="moveSlide(1)">›</div>
-        </div>
+        <!-- ISI GALERI (TERSEMBUNYI SAMPAI OPSI B DITEKAN) -->
+        <div id="galleryActualContent" style="display: none;">
+          <div class="slider-container" id="sliderContainer">
+            <!-- SLIDE 1 (galeri1.jpg) -->
+            <div class="slide-item active">
+              <div class="chat-img-frame" onclick="openLightbox('galeri1.jpg', 'Every story begins with a simple hello, but with you, it turned into my favorite conversation.')">
+                <img src="galeri1.jpg" onerror="this.src='foto1.jpeg'" alt="Chat 1">
+                <div class="zoom-hint">🔍 Ketuk untuk Fullscreen</div>
+              </div>
+              <div class="slide-caption">
+                <h4>Slide 01 • The First Spark</h4>
+                <p>"Every story begins with a simple hello, but with you, it turned into my favorite conversation."</p>
+              </div>
+            </div>
 
-        <div style="text-align: center; margin-top: 25px;">
-          <button onclick="openApp('letterApp')" style="background: #82384e; color: #fff; border: none; padding: 12px 24px; border-radius: 20px; font-weight: 600; font-size: 12px; cursor: pointer; box-shadow: 0 4px 15px rgba(130, 56, 78, 0.25);">
-            Buka Surat Terakhir 💌 ➔
-          </button>
+            <!-- SLIDE 2 (galeri2.jpg) -->
+            <div class="slide-item">
+              <div class="chat-img-frame" onclick="openLightbox('galeri2.jpg', 'You have this rare magic of making my hardest days feel effortless, just with your words.')">
+                <img src="galeri2.jpg" onerror="this.src='foto2.jpeg'" alt="Chat 2">
+                <div class="zoom-hint">🔍 Ketuk untuk Fullscreen</div>
+              </div>
+              <div class="slide-caption">
+                <h4>Slide 02 • Stolen Smiles & Comfort</h4>
+                <p>"You have this rare magic of making my hardest days feel effortless, just with your words."</p>
+              </div>
+            </div>
+
+            <!-- SLIDE 3 (galeri3.jpg) -->
+            <div class="slide-item">
+              <div class="chat-img-frame" onclick="openLightbox('galeri3.jpg', 'The official beginning of us: crossing the line from strangers to each other\'s favorite person.')">
+                <img src="galeri3.jpg" onerror="this.src='foto3.jpeg'" alt="Chat 3">
+                <div class="zoom-hint">🔍 Ketuk untuk Fullscreen</div>
+              </div>
+              <div class="slide-caption">
+                <h4>Slide 03 • 10-05-26</h4>
+                <p>"The official beginning of us: crossing the line from strangers to each other's favorite person."</p>
+              </div>
+            </div>
+
+            <!-- SLIDE 4 (galeri4.jpg) -->
+            <div class="slide-item">
+              <div class="chat-img-frame" onclick="openLightbox('galeri4.jpg', 'Even when we argue over silly trivial things, you are still the only one I ever want to talk to.')">
+                <img src="galeri4.jpg" onerror="this.src='foto4.jpeg'" alt="Chat 4">
+                <div class="zoom-hint">🔍 Ketuk untuk Fullscreen</div>
+              </div>
+              <div class="slide-caption">
+                <h4>Slide 04 • Silly Fights & Endless Laughs</h4>
+                <p>"Even when we argue over silly trivial things, you are still the only one I ever want to talk to."</p>
+              </div>
+            </div>
+
+            <!-- SLIDE 5 (galeri5.jpg) -->
+            <div class="slide-item">
+              <div class="chat-img-frame" onclick="openLightbox('galeri5.jpg', '150 days of endless chat logs, yet I still fall in love with you anew in every single text.')">
+                <img src="galeri5.jpg" onerror="this.src='foto5.jpeg'" alt="Chat 5">
+                <div class="zoom-hint">🔍 Ketuk untuk Fullscreen</div>
+              </div>
+              <div class="slide-caption">
+                <h4>Slide 05 • 150 Days With You</h4>
+                <p>"150 days of endless chat logs, yet I still fall in love with you anew in every single text."</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="slider-nav">
+            <div class="nav-arrow" onclick="moveSlide(-1)">‹</div>
+            <div class="nav-dots" id="sliderDots">
+              <div class="nav-dot active"></div>
+              <div class="nav-dot"></div>
+              <div class="nav-dot"></div>
+              <div class="nav-dot"></div>
+              <div class="nav-dot"></div>
+            </div>
+            <div class="nav-arrow" onclick="moveSlide(1)">›</div>
+          </div>
+
+          <div style="text-align: center; margin-top: 20px;">
+            <button onclick="openApp('letterApp')" style="background: #82384e; color: #fff; border: none; padding: 12px 24px; border-radius: 20px; font-weight: 600; font-size: 12px; cursor: pointer; box-shadow: 0 4px 15px rgba(130, 56, 78, 0.25);">
+              Buka Surat Terakhir 💌 ➔
+            </button>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- 7. APP: SURAT (PANJANG, FULL ENGLISH, MANIS & PENDAMPING LAGU + surat.jpg) -->
+    <!-- LIGHTBOX / FULLSCREEN POPUP UNTUK SS CHAT -->
+    <div id="imageLightbox">
+      <button class="lightbox-close" onclick="closeLightbox()">✕ Tutup Layar Penuh</button>
+      <div class="lightbox-img-wrap" onclick="closeLightbox()">
+        <img id="lightboxImg" src="" alt="Fullscreen Chat Screenshot">
+      </div>
+      <div class="lightbox-caption" id="lightboxCaption"></div>
+    </div>
+
+    <!-- 7. APP: SURAT (PANJANG, FULL ENGLISH + surat.jpg) -->
     <div class="screen app-window" id="letterApp">
       <div class="app-header">
         <span class="back-btn" onclick="goHome()">‹ Home</span>
@@ -892,7 +1002,6 @@
 
       <div class="app-body">
         <div class="letter-paper">
-          <!-- FOTO SURAT (surat.jpg) -->
           <img src="surat.jpg" onerror="this.src='foto3.jpeg'" class="letter-photo" alt="Foto Surat">
 
           <div class="letter-track-badge">
@@ -930,6 +1039,28 @@
     let enteredPin = "";
     let currentSlide = 0;
     const totalSlides = 5;
+
+    /* EFEK TAP HEART PARTICLE DI LAYAR HP */
+    const phoneContainer = document.getElementById('phoneContainer');
+    const heartSymbols = ['💖', '🤍', '✨', '🌸', '🕊️'];
+
+    phoneContainer.addEventListener('click', function(e) {
+      // Cegah trigger jika sedang klik tombol tertentu agar tidak bentrok
+      if (e.target.tagName === 'BUTTON' || e.target.classList.contains('key-btn') || e.target.classList.contains('quiz-btn')) return;
+
+      const rect = phoneContainer.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      const heart = document.createElement('div');
+      heart.className = 'tap-heart';
+      heart.innerText = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+      heart.style.left = x + 'px';
+      heart.style.top = y + 'px';
+
+      phoneContainer.appendChild(heart);
+      setTimeout(() => heart.remove(), 900);
+    });
 
     /* PASSCODE FUNCTIONS */
     function showPasscode() {
@@ -1011,7 +1142,7 @@
 
       if (appId === 'cameraApp') {
         document.getElementById('statusBar').style.color = '#fff';
-        if (bgm && !bgm.paused) bgm.pause(); // Jeda musik saat kamera/video nyala
+        if (bgm && !bgm.paused) bgm.pause();
         startCameraSequence();
       } else {
         document.getElementById('statusBar').style.color = '#2b2326';
@@ -1029,9 +1160,10 @@
 
       const vid = document.getElementById('cameraVideo');
       if (vid) vid.pause();
+      closeLightbox();
     }
 
-    /* KUIS CATATAN (OPSI A / B) */
+    /* KUIS CATATAN (JAWABAN BENAR: OPSI A) */
     function answerNotesQuiz(isOptionA) {
       const gate = document.getElementById('notesQuizGate');
       const content = document.getElementById('notesActualContent');
@@ -1040,7 +1172,6 @@
       if (isOptionA) {
         gate.style.display = 'none';
         content.style.display = 'block';
-
         setTimeout(() => {
           notif.style.display = 'block';
         }, 1200);
@@ -1053,7 +1184,24 @@
       }
     }
 
-    /* SLIDER GALERI (5 SLIDES) */
+    /* KUIS GALERI (JAWABAN BENAR: OPSI B) */
+    function answerGalleryQuiz(isOptionB) {
+      const gate = document.getElementById('galleryQuizGate');
+      const content = document.getElementById('galleryActualContent');
+
+      if (isOptionB) {
+        gate.style.display = 'none';
+        content.style.display = 'block';
+      } else {
+        gate.classList.add('shake');
+        setTimeout(() => {
+          gate.classList.remove('shake');
+          alert('Jawaban salah! Bukan itu yang bikin Pandu kangen terus. Coba tebak lagi!');
+        }, 360);
+      }
+    }
+
+    /* SLIDER GALERI */
     function moveSlide(direction) {
       const slides = document.querySelectorAll('.slide-item');
       const dots = document.querySelectorAll('.nav-dot');
@@ -1065,6 +1213,21 @@
 
       slides[currentSlide].classList.add('active');
       dots[currentSlide].classList.add('active');
+    }
+
+    /* LIGHTBOX FULLSCREEN PREVIEW UNTUK SS CHAT */
+    function openLightbox(src, caption) {
+      const lightbox = document.getElementById('imageLightbox');
+      const img = document.getElementById('lightboxImg');
+      const cap = document.getElementById('lightboxCaption');
+
+      img.src = src;
+      cap.innerText = `"${caption}"`;
+      lightbox.style.display = 'flex';
+    }
+
+    function closeLightbox() {
+      document.getElementById('imageLightbox').style.display = 'none';
     }
 
     /* KAMERA & VIDEO */
