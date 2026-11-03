@@ -88,7 +88,6 @@
     .lock-time { font-size: 68px; font-weight: 700; letter-spacing: -2px; }
     .lock-date { font-size: 14px; opacity: 0.85; margin-top: -6px; }
 
-    /* HACKED WARNING NOTIF */
     .lock-notif {
       background: rgba(18, 18, 22, 0.75);
       backdrop-filter: blur(20px);
@@ -121,41 +120,17 @@
       margin-top: 30px;
     }
 
-    .passcode-dots {
-      display: flex;
-      gap: 14px;
-      margin: 15px 0 25px;
-    }
-
-    .dot {
-      width: 12px;
-      height: 12px;
-      border: 1.5px solid #fff;
-      border-radius: 50%;
-    }
-
+    .passcode-dots { display: flex; gap: 14px; margin: 15px 0 25px; }
+    .dot { width: 12px; height: 12px; border: 1.5px solid #fff; border-radius: 50%; }
     .dot.filled { background: #fff; }
 
-    .keypad {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px 24px;
-    }
-
+    .keypad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px 24px; }
     .key-btn {
-      width: 65px;
-      height: 65px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.2);
-      border: none;
-      color: #fff;
-      font-size: 24px;
-      font-weight: 600;
-      cursor: pointer;
+      width: 65px; height: 65px; border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2); border: none;
+      color: #fff; font-size: 24px; font-weight: 600; cursor: pointer;
       backdrop-filter: blur(8px);
-      transition: background 0.15s;
     }
-
     .key-btn:active { background: rgba(255,255,255,0.4); }
 
     /* === 2. HOMESCREEN === */
@@ -170,7 +145,7 @@
       background: rgba(255, 255, 255, 0.88);
       backdrop-filter: blur(14px);
       border-radius: 22px;
-      padding: 18px;
+      padding: 16px;
       margin-bottom: 25px;
       border: 1px solid rgba(255,255,255,0.9);
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
@@ -182,46 +157,30 @@
     .apps-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
+      gap: 16px 14px;
       text-align: center;
     }
 
     .app-icon {
-      width: 60px;
-      height: 60px;
-      border-radius: 17px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 26px;
-      margin: 0 auto 6px;
+      width: 58px; height: 58px; border-radius: 16px;
+      display: flex; justify-content: center; align-items: center;
+      font-size: 25px; margin: 0 auto 5px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      cursor: pointer;
-      transition: transform 0.15s;
-      position: relative;
+      cursor: pointer; position: relative;
     }
-
     .app-icon:active { transform: scale(0.92); }
+
     .bg-notes { background: #ffeaa7; }
     .bg-chat { background: #34c759; color: #fff; }
     .bg-gallery { background: #dcedc1; }
+    .bg-camera { background: #4a4a4e; color: #fff; }
     .bg-letter { background: #ffd3b6; }
 
     .badge-unread {
-      position: absolute;
-      top: -4px;
-      right: -4px;
-      background: #ff3b30;
-      color: #fff;
-      font-size: 10px;
-      font-weight: 700;
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 2px solid #fff;
+      position: absolute; top: -4px; right: -4px;
+      background: #ff3b30; color: #fff; font-size: 10px; font-weight: 700;
+      width: 18px; height: 18px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; border: 2px solid #fff;
     }
 
     .app-name { font-size: 11px; font-weight: 600; color: #333; }
@@ -236,55 +195,25 @@
 
     .app-header {
       padding: 48px 16px 12px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid #e5e5ea;
-      background: #f7f7f8;
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid #e5e5ea; background: #f7f7f8;
     }
 
-    .back-btn { color: #007aff; font-size: 14px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 3px; }
+    .back-btn { color: #007aff; font-size: 14px; font-weight: 600; cursor: pointer; }
     .app-body { padding: 16px; overflow-y: auto; flex: 1; }
 
     /* === iMESSAGE INBOX & CHATS === */
-    #chatApp { background: #fff; }
-
-    /* INBOX LIST */
-    .imsg-list-header {
-      padding: 48px 18px 8px;
-      background: #fff;
-    }
+    #chatApp { background: #fff; position: relative; }
+    .imsg-list-header { padding: 48px 18px 8px; background: #fff; }
     .imsg-title { font-size: 28px; font-weight: 700; color: #000; margin-bottom: 10px; }
-    .imsg-search {
-      background: #e3e3e8;
-      border-radius: 10px;
-      padding: 7px 12px;
-      font-size: 13px;
-      color: #8e8e93;
-      margin-bottom: 8px;
-    }
+    .imsg-search { background: #e3e3e8; border-radius: 10px; padding: 7px 12px; font-size: 13px; color: #8e8e93; margin-bottom: 8px; }
 
-    .chat-row {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 12px 16px;
-      border-bottom: 1px solid #f0f0f2;
-      cursor: pointer;
-    }
+    .chat-row { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 1px solid #f0f0f2; cursor: pointer; }
     .chat-row:active { background: #f5f5f7; }
 
     .chat-avatar {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background: #8e8e93;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 22px;
-      flex-shrink: 0;
+      width: 48px; height: 48px; border-radius: 50%;
+      background: #8e8e93; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0;
     }
     .avatar-pandu { background: #ff2d55; }
     .avatar-unknown { background: #1c1c1e; }
@@ -295,81 +224,102 @@
     .chat-row-time { font-size: 11px; color: #8e8e93; }
     .chat-row-preview { font-size: 12.5px; color: #8e8e93; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-    .unread-dot {
-      width: 9px;
-      height: 9px;
-      background: #007aff;
-      border-radius: 50%;
-      margin-right: -4px;
-    }
+    .unread-dot { width: 9px; height: 9px; background: #007aff; border-radius: 50%; margin-right: -4px; }
 
-    /* CHAT DETAIL (CONVERSATION) */
-    .chat-detail-view {
-      display: none;
-      flex-direction: column;
-      height: 100%;
-      background: #ffffff;
-    }
-
-    .contact-center {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-    .contact-circle {
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      margin-bottom: 2px;
-    }
+    /* CONVERSATION BUBBLES */
+    .chat-detail-view { display: none; flex-direction: column; height: 100%; background: #ffffff; position: relative; }
+    .contact-center { display: flex; flex-direction: column; align-items: center; text-align: center; }
+    .contact-circle { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; margin-bottom: 2px; }
 
     .imsg-row { display: flex; flex-direction: column; margin-bottom: 9px; }
-    .bubble {
-      max-width: 76%;
-      padding: 9.5px 14px;
-      font-size: 13.5px;
-      line-height: 1.4;
-      border-radius: 18px;
-      word-wrap: break-word;
-    }
+    .bubble { max-width: 76%; padding: 9.5px 14px; font-size: 13.5px; line-height: 1.4; border-radius: 18px; word-wrap: break-word; }
     .bubble-out { background: #007aff; color: #fff; align-self: flex-end; border-bottom-right-radius: 4px; }
     .bubble-in { background: #e9e9eb; color: #000; align-self: flex-start; border-bottom-left-radius: 4px; }
     .msg-status { font-size: 10px; color: #8e8e93; text-align: right; margin-top: 3px; }
 
+    /* POP-UP NOTIFIKASI SPAM DARI NOMOR ASING */
+    .spam-banner-container {
+      position: absolute; top: 50px; left: 12px; right: 12px;
+      z-index: 1500; display: flex; flex-direction: column; gap: 8px;
+      pointer-events: none;
+    }
+    .spam-banner {
+      background: rgba(25, 25, 30, 0.94);
+      backdrop-filter: blur(25px);
+      border-radius: 18px;
+      padding: 12px 14px;
+      color: #fff;
+      border: 1px solid rgba(255, 69, 58, 0.6);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      animation: slideDown 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      pointer-events: auto;
+    }
+    .spam-banner h5 { font-size: 11.5px; color: #ff453a; margin-bottom: 2px; display: flex; justify-content: space-between; }
+    .spam-banner p { font-size: 12px; color: #eee; font-weight: 500; }
+
+    /* MODAL RESPON PANIK EYAA */
+    #panicModal {
+      display: none;
+      position: absolute; inset: 0; background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(8px); z-index: 2000;
+      flex-direction: column; justify-content: flex-end; padding: 20px;
+    }
+    .panic-box {
+      background: #fff; border-radius: 24px; padding: 20px;
+      text-align: center; box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+    }
+    .panic-box h3 { font-size: 16px; color: #ff3b30; margin-bottom: 8px; }
+    .panic-box p { font-size: 12.5px; color: #555; line-height: 1.5; margin-bottom: 16px; text-align: left; background: #f7f7f8; padding: 12px; border-radius: 12px; }
+
+    /* === 4. APP: KAMERA (IOS STYLE) === */
+    #cameraApp {
+      background: #000; color: #fff; display: none;
+    }
+    .camera-top-bar {
+      padding: 45px 20px 10px; display: flex; justify-content: space-between; font-size: 14px; color: #ffcc00;
+    }
+    .camera-viewfinder {
+      flex: 1; margin: 10px 14px; border-radius: 24px; overflow: hidden;
+      position: relative; background: #1a1a1a; display: flex; align-items: center; justify-content: center;
+    }
+    .camera-viewfinder img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .camera-focus-box {
+      position: absolute; width: 130px; height: 130px;
+      border: 1.5px solid #ffcc00; border-radius: 12px;
+      box-shadow: 0 0 15px rgba(255, 204, 0, 0.4);
+      animation: pulse 1.5s infinite;
+    }
+    .camera-rec {
+      position: absolute; top: 14px; left: 16px;
+      background: rgba(0,0,0,0.6); padding: 4px 10px; border-radius: 20px;
+      font-size: 11px; font-weight: 700; color: #ff3b30; display: flex; align-items: center; gap: 6px;
+    }
+    .camera-alert-overlay {
+      position: absolute; bottom: 12px; left: 12px; right: 12px;
+      background: rgba(0,0,0,0.75); backdrop-filter: blur(10px);
+      padding: 10px 12px; border-radius: 14px; text-align: center; border: 1px solid rgba(255,255,255,0.2);
+    }
+    .camera-controls {
+      height: 110px; display: flex; align-items: center; justify-content: space-around; padding-bottom: 20px;
+    }
+    .shutter-btn {
+      width: 66px; height: 66px; border-radius: 50%;
+      border: 4px solid #fff; padding: 3px; background: transparent; cursor: pointer;
+    }
+    .shutter-inner { width: 100%; height: 100%; background: #fff; border-radius: 50%; }
+
     /* NOTES STYLING */
     .journal-card {
-      background: #ffffff;
-      border-radius: 22px;
-      padding: 14px;
-      margin-bottom: 22px;
-      box-shadow: 0 10px 25px rgba(130, 56, 78, 0.08);
-      border: 1px solid #f2e2e5;
+      background: #ffffff; border-radius: 22px; padding: 14px; margin-bottom: 22px;
+      box-shadow: 0 10px 25px rgba(130, 56, 78, 0.08); border: 1px solid #f2e2e5;
     }
     .journal-badge {
-      display: inline-block;
-      font-size: 10.5px;
-      font-weight: 700;
-      color: #82384e;
-      background: #fbeef1;
-      padding: 4px 12px;
-      border-radius: 20px;
-      letter-spacing: 0.5px;
-      margin-bottom: 10px;
+      display: inline-block; font-size: 10.5px; font-weight: 700; color: #82384e;
+      background: #fbeef1; padding: 4px 12px; border-radius: 20px; letter-spacing: 0.5px; margin-bottom: 10px;
     }
-    .journal-photo {
-      width: 100%;
-      height: 185px;
-      object-fit: cover;
-      border-radius: 16px;
-      margin-bottom: 12px;
-      display: block;
-      background: #f0e4e6;
-    }
+    .journal-photo { width: 100%; height: 185px; object-fit: cover; border-radius: 16px; margin-bottom: 12px; display: block; background: #f0e4e6; }
     .journal-card h4 { font-size: 14.5px; font-weight: 700; color: #2b2326; margin-bottom: 6px; }
     .journal-card p { font-size: 12.5px; color: #5c4f53; line-height: 1.6; }
 
@@ -381,20 +331,13 @@
 
     /* HOME INDICATOR */
     .home-indicator {
-      width: 130px;
-      height: 5px;
-      background: #2b2326;
-      border-radius: 10px;
-      position: absolute;
-      bottom: 8px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 1000;
-      cursor: pointer;
+      width: 130px; height: 5px; background: #2b2326; border-radius: 10px;
+      position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%); z-index: 1000; cursor: pointer;
     }
 
     @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.02); } 100% { transform: scale(1); } }
     @keyframes shake { 0%, 100% { transform: translateX(0); } 20%, 60% { transform: translateX(-8px); } 40%, 80% { transform: translateX(8px); } }
+    @keyframes slideDown { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
     .shake { animation: shake 0.3s; }
   </style>
 </head>
@@ -408,7 +351,7 @@
       <span>5G 100%</span>
     </div>
 
-    <!-- 1. LOCKSCREEN (TEROR DARI UNKNOWN) -->
+    <!-- 1. LOCKSCREEN -->
     <div class="screen" id="lockscreen">
       <div id="lockMain">
         <div class="lock-time">14:30</div>
@@ -454,8 +397,8 @@
     <!-- 2. HOMESCREEN -->
     <div class="screen" id="homescreen">
       <div class="widget-box">
-        <h3>⚠️ SYSTEM ANOMALY DETECTED</h3>
-        <p>"Seluruh sistem telah dienkripsi oleh pihak eksternal. Selesaikan semua instruksi di dalam aplikasi untuk memulihkan akses penuh."</p>
+        <h3>⚠️ SYSTEM OVERRIDE ACTIVE</h3>
+        <p>"Akses aplikasi dibatasi. Selesaikan urutan instruksi: Pesan ➔ Kamera ➔ Catatan ➔ Surat."</p>
       </div>
 
       <div class="apps-grid">
@@ -466,12 +409,16 @@
           </div>
           <div class="app-name">Pesan</div>
         </div>
+        <div class="app-item" onclick="openApp('cameraApp')">
+          <div class="app-icon bg-camera">📷</div>
+          <div class="app-name">Kamera</div>
+        </div>
         <div class="app-item" onclick="openApp('notesApp')">
           <div class="app-icon bg-notes">📝</div>
           <div class="app-name">Catatan</div>
         </div>
         <div class="app-item" onclick="openApp('galleryApp')">
-          <div class="app-icon bg-gallery">📷</div>
+          <div class="app-icon bg-gallery">🖼️</div>
           <div class="app-name">Galeri</div>
         </div>
         <div class="app-item" onclick="openApp('letterApp')">
@@ -483,6 +430,9 @@
 
     <!-- 3. APP: iMESSAGE INBOX & CONVERSATIONS -->
     <div class="screen app-window" id="chatApp">
+
+      <!-- SPAM NOTIFICATIONS CONTAINER -->
+      <div class="spam-banner-container" id="spamBanners"></div>
 
       <!-- VIEW A: INBOX DAFTAR PESAN -->
       <div id="inboxView" style="display: flex; flex-direction: column; height: 100%;">
@@ -496,7 +446,7 @@
         </div>
 
         <div class="app-body" style="padding: 0;">
-          <!-- CHAT 1: PANDU (PACAR YANG POLOS / NANYAIN DI MANA) -->
+          <!-- CHAT 1: PANDU -->
           <div class="chat-row" onclick="openChat('chatPanduView')">
             <div class="chat-avatar avatar-pandu">P</div>
             <div class="chat-row-info">
@@ -508,7 +458,7 @@
             </div>
           </div>
 
-          <!-- CHAT 2: UNKNOWN (HACKER MENYERAMKAN & FORMAL) -->
+          <!-- CHAT 2: UNKNOWN -->
           <div class="chat-row" onclick="openChat('chatUnknownView')">
             <div class="unread-dot"></div>
             <div class="chat-avatar avatar-unknown">⚠️</div>
@@ -535,19 +485,13 @@
         </div>
         <div class="app-body">
           <div style="text-align: center; font-size: 11px; color: #8e8e93; margin-bottom: 15px;">Hari ini 14:15</div>
-          <div class="imsg-row">
-            <div class="bubble bubble-in">Sayanggg</div>
-          </div>
-          <div class="imsg-row">
-            <div class="bubble bubble-in">Kamu di mana? Masih di kosan atau di luar?</div>
-          </div>
-          <div class="imsg-row">
-            <div class="bubble bubble-in">Nanti mau aku jemput ga sekalian kita cari makan bareng? Kabarin aku yaa ❤️</div>
-          </div>
+          <div class="imsg-row"><div class="bubble bubble-in">Sayanggg</div></div>
+          <div class="imsg-row"><div class="bubble bubble-in">Kamu di mana? Masih di kosan atau di luar?</div></div>
+          <div class="imsg-row"><div class="bubble bubble-in">Nanti mau aku jemput ga sekalian kita cari makan bareng? Kabarin aku yaa ❤️</div></div>
         </div>
       </div>
 
-      <!-- VIEW C: CHAT DENGAN UNKNOWN (CREEPY & FORMAL) -->
+      <!-- VIEW C: CHAT DENGAN UNKNOWN -->
       <div class="chat-detail-view" id="chatUnknownView">
         <div class="app-header">
           <span class="back-btn" onclick="backToInbox()">‹ Messages</span>
@@ -558,54 +502,80 @@
           </div>
           <span style="width: 40px;"></span>
         </div>
-        <div class="app-body">
+        <div class="app-body" id="unknownChatBody">
           <div style="text-align: center; font-size: 11px; color: #8e8e93; margin-bottom: 15px;">Hari ini 14:28</div>
 
-          <div class="imsg-row">
-            <div class="bubble bubble-in">Selamat siang, Saudari Lune Jua.</div>
-          </div>
+          <div class="imsg-row"><div class="bubble bubble-in">Selamat siang, Saudari Lune Jua.</div></div>
+          <div class="imsg-row"><div class="bubble bubble-out">Ini siapa ya?? Dapet nomor saya dari mana?!</div><div class="msg-status">Delivered</div></div>
+          <div class="imsg-row"><div class="bubble bubble-in">Identitas saya tidak relevan. Yang perlu Anda pahami: perangkat Anda berada di bawah pantauan kami secara menyeluruh.</div></div>
+          <div class="imsg-row"><div class="bubble bubble-out">Maksudnya apa ya?! Jangan main-main atau saya laporin polisi! 😡</div><div class="msg-status">Delivered</div></div>
+          <div class="imsg-row"><div class="bubble bubble-in">Kami memegang akses galeri, berkas, dan aktivitas Anda. Segala upaya pembangkangan akan berakibat fatal.</div></div>
 
-          <div class="imsg-row">
-            <div class="bubble bubble-out">Ini siapa ya?? Dapet nomor saya dari mana?!</div>
-            <div class="msg-status">Delivered</div>
-          </div>
-
-          <div class="imsg-row">
-            <div class="bubble bubble-in">Identitas saya tidak penting untuk Anda ketahui. Yang perlu Anda sadari saat ini adalah: integritas ponsel Anda telah sepenuhnya berada di bawah kendali pihak kami.</div>
-          </div>
-
-          <div class="imsg-row">
-            <div class="bubble bubble-out">Maksudnya apa ya?! Tolong jangan main-main atau saya laporin polisi sekarang juga! 😡</div>
-            <div class="msg-status">Delivered</div>
-          </div>
-
-          <div class="imsg-row">
-            <div class="bubble bubble-in">Polisi tidak akan mampu memulihkan enkripsi data Anda. Kami memiliki akses penuh ke seluruh direktori: galeri foto, riwayat percakapan, dan catatan pribadi Anda.</div>
-          </div>
-
-          <div class="imsg-row">
-            <div class="bubble bubble-out">Mau kalian apa sebenernya?! Jangan macam-macam!</div>
-            <div class="msg-status">Delivered</div>
-          </div>
-
-          <div class="imsg-row">
-            <div class="bubble bubble-in">Hanya ada satu cara jika Anda ingin seluruh akses ponsel Anda dipulihkan tanpa ada data pribadi yang disebarkan:</div>
-          </div>
-
-          <div class="imsg-row">
-            <div class="bubble bubble-in">Ikuti seluruh instruksi kami. Buka aplikasi "Catatan" dan "Galeri" di ponsel Anda sekarang. Ada petunjuk dan arsip yang sengaja kami susun di sana. Pecahkan setiap kodenya sebelum waktu Anda habis.</div>
-          </div>
-
-          <div class="imsg-row">
-            <div class="bubble bubble-out">Gila ya... ini maksudnya apa sih... tolong jangan sebar apa-apa saya mohon 😭</div>
-            <div class="msg-status">Read 14:30</div>
+          <!-- TOMBOL TRIGGER TEROR SPAM -->
+          <div style="text-align: center; margin: 25px 0 10px;">
+            <button onclick="triggerSpamAttack()" style="background: #ff3b30; color: #fff; border: none; padding: 10px 18px; border-radius: 20px; font-size: 12px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 15px rgba(255, 59, 48, 0.4);">
+              ⚠️ [ Balas & Lihat Kejadian Selanjutnya ]
+            </button>
           </div>
         </div>
+
+        <!-- MODAL DIALOG PANIK EYAA SETELAH DISPAM -->
+        <div id="panicModal">
+          <div class="panic-box">
+            <h3>🚨 INCOMING SPAM OVERLOAD</h3>
+            <p>
+              <strong>Eyaa:</strong> "WOI ANJIR KALIAN SIAPA SIH SEMUA?! KENAPA SPAM GUE?! MAKSUDNYA APA DISURUH BUKA KAMERA DEPAN?!"<br><br>
+              <strong>+62 813-xxx:</strong> "Gausah banyak bacot, buka kamera lo sekarang kalau ga mau data lo dihapus permanen!"<br><br>
+              <strong>Command:</strong> <em>"TARGET DETECTED. OPEN CAMERA APPLICATION IMMEDIATELY."</em>
+            </p>
+            <button onclick="goToCamera()" style="width: 100%; background: #000; color: #fff; border: none; padding: 14px; border-radius: 14px; font-weight: 700; font-size: 13px; cursor: pointer;">
+              📸 TERPAKSA BUKA APLIKASI KAMERA
+            </button>
+          </div>
+        </div>
+
       </div>
 
     </div>
 
-    <!-- 4. APP: NOTES (AESTHETIC SCRAPBOOK 5 BULAN) -->
+    <!-- 4. APP: KAMERA (IOS CAMERA SIMULATOR) -->
+    <div class="screen app-window" id="cameraApp">
+      <div class="camera-top-bar">
+        <span>⚡ Auto</span>
+        <span onclick="goHome()" style="color: #fff; cursor: pointer; font-weight: 600;">✕ Keluar</span>
+      </div>
+
+      <div class="camera-viewfinder">
+        <!-- FOTO EYAA DI KAMERA (GANTI DENGAN kamera.jpeg) -->
+        <img src="kamera.jpeg" onerror="this.src='foto2.jpeg'" alt="Camera Viewfinder">
+
+        <!-- KOTAK FOKUS KUNING KHAS IPHONE -->
+        <div class="camera-focus-box"></div>
+
+        <div class="camera-rec">
+          <span>● REC</span> 00:05
+        </div>
+
+        <div class="camera-alert-overlay">
+          <p style="font-size: 12px; font-weight: 700; color: #ffcc00; margin-bottom: 2px;">⚠️ CAMERA HIJACKED</p>
+          <p style="font-size: 11px; color: #fff; line-height: 1.3;">
+            "Tuh kan, tegang banget mukanya wkwk... Sekarang buka aplikasi <strong>'Catatan'</strong> dan <strong>'Surat'</strong> kalau mau tahu dalang aslinya!"
+          </p>
+        </div>
+      </div>
+
+      <div class="camera-controls">
+        <div style="width: 44px; height: 44px; border-radius: 8px; background: #333; overflow: hidden;">
+          <img src="foto1.jpeg" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+        <div class="shutter-btn" onclick="openApp('notesApp')">
+          <div class="shutter-inner"></div>
+        </div>
+        <div style="font-size: 22px; cursor: pointer;" onclick="openApp('notesApp')">🔄</div>
+      </div>
+    </div>
+
+    <!-- 5. APP: NOTES (AESTHETIC SCRAPBOOK 5 BULAN) -->
     <div class="screen app-window" id="notesApp">
       <div class="app-header">
         <span class="back-btn" onclick="goHome()">‹ Home</span>
@@ -613,51 +583,40 @@
         <span style="width: 40px;"></span>
       </div>
       <div class="app-body">
-
-        <!-- BULAN 1 -->
         <div class="journal-card">
           <span class="journal-badge">FILE 01 • AWAL MULA</span>
           <img src="foto1.jpeg" class="journal-photo" alt="Foto Bulan 1">
           <h4>Si Berisik yang Caper</h4>
           <p>Awal kenal sumpah ini orang kenapa berisik banget dah? Tiap hari ada aja yang dibawelin, makin gue cuekin makin menjadi-jadi capernya. Tapi anehnya... kalau sehari lo ga muncul, roomchat gue berasa sepi banget.</p>
         </div>
-
-        <!-- BULAN 2 -->
         <div class="journal-card">
           <span class="journal-badge">FILE 02 • THE TURNING POINT</span>
           <img src="foto2.jpeg" class="journal-photo" alt="Foto Bulan 2">
           <h4>PAP Penjebol Pertahanan</h4>
           <p>Gue iseng bilang "lagi capek nih, semangatin kek". Ekspektasi gue paling diketawain. Eh dia malah kirim PAP mukanya sendiri: <em>"Tuh liat muka gue langsung seger kan lo?"</em>. Di situ pertahanan gue runtuh total. Fix gue naksir si bawel.</p>
         </div>
-
-        <!-- BULAN 3 -->
         <div class="journal-card">
           <span class="journal-badge">FILE 03 • 10-05-26</span>
           <img src="foto3.jpeg" class="journal-photo" alt="Foto Bulan 3">
           <h4>Resmi Tapi Tetap Gelud</h4>
           <p>Hari jadian kita. Tetap pake debat siapa yang suka duluan. Lo ngeyel bilang gue yang nembak, padahal jelas-jelas lo yang caper duluan dari awal wkwk. Tapi gapapa, yang penting si bawel akhirnya jadi punya gue.</p>
         </div>
-
-        <!-- BULAN 4 -->
         <div class="journal-card">
           <span class="journal-badge">FILE 04 • LOVE LANGUAGE</span>
           <img src="foto4.jpeg" class="journal-photo" alt="Foto Bulan 4">
           <h4>Hobi Bikin Lo Nangis & Kesel</h4>
           <p>Fase di mana gue makin hobi ngerjain lo sampe bibir lo maju 5 senti mau nangis. Lucu banget soalnya. Tapi ya gitu, gue yang bikin kesel, gue juga yang kelabakan meluk dan nyari cara biar lo senyum lagi.</p>
         </div>
-
-        <!-- BULAN 5 -->
         <div class="journal-card">
           <span class="journal-badge">FILE 05 • PRESENT DAY</span>
           <img src="foto5.jpeg" class="journal-photo" alt="Foto Bulan 5">
           <h4>Hari Ini & Seterusnya ❤️</h4>
           <p>5 bulan cepet banget ya Eyaa. Makasih udah bertahan sama sifat jahil gue. Debat hal gak penting kita jangan pernah ilang ya, gacor terus pokoknya!</p>
         </div>
-
       </div>
     </div>
 
-    <!-- 5. APP: GALERI POLAROID -->
+    <!-- 6. APP: GALERI POLAROID -->
     <div class="screen app-window" id="galleryApp">
       <div class="app-header">
         <span class="back-btn" onclick="goHome()">‹ Home</span>
@@ -666,27 +625,15 @@
       </div>
       <div class="app-body">
         <div class="polaroid-grid">
-          <div class="polaroid">
-            <img src="foto1.jpeg" alt="Bulan 1">
-            <span>Bulan 1: Awal Mula</span>
-          </div>
-          <div class="polaroid">
-            <img src="foto2.jpeg" alt="Bulan 2">
-            <span>Bulan 2: PAP Pertama</span>
-          </div>
-          <div class="polaroid">
-            <img src="foto3.jpeg" alt="Bulan 3">
-            <span>Bulan 3: 10-05-26</span>
-          </div>
-          <div class="polaroid">
-            <img src="foto4.jpeg" alt="Bulan 4">
-            <span>Bulan 4: Tukang Ngambek</span>
-          </div>
+          <div class="polaroid"><img src="foto1.jpeg" alt="Bulan 1"><span>Bulan 1: Awal Mula</span></div>
+          <div class="polaroid"><img src="foto2.jpeg" alt="Bulan 2"><span>Bulan 2: PAP Pertama</span></div>
+          <div class="polaroid"><img src="foto3.jpeg" alt="Bulan 3"><span>Bulan 3: 10-05-26</span></div>
+          <div class="polaroid"><img src="foto4.jpeg" alt="Bulan 4"><span>Bulan 4: Tukang Ngambek</span></div>
         </div>
       </div>
     </div>
 
-    <!-- 6. APP: SURAT DARI PANDU (REVEAL AKHIR PRANK & HAPPY 5 MONTHS!) -->
+    <!-- 7. APP: SURAT DARI PANDU (REVEAL PRANK) -->
     <div class="screen app-window" id="letterApp">
       <div class="app-header">
         <span class="back-btn" onclick="goHome()">‹ Home</span>
@@ -776,12 +723,18 @@
       if(appId === 'chatApp') {
         backToInbox();
       }
+      if(appId === 'cameraApp') {
+        document.getElementById('statusBar').style.color = '#fff';
+      } else {
+        document.getElementById('statusBar').style.color = '#2b2326';
+      }
     }
 
     function goHome() {
       const windows = document.querySelectorAll('.app-window');
       windows.forEach(win => win.style.display = 'none');
       document.getElementById('homescreen').style.display = 'block';
+      document.getElementById('statusBar').style.color = '#2b2326';
     }
 
     /* iMESSAGE NAVIGATION */
@@ -796,6 +749,39 @@
       document.getElementById('chatPanduView').style.display = 'none';
       document.getElementById('chatUnknownView').style.display = 'none';
       document.getElementById('inboxView').style.display = 'flex';
+    }
+
+    /* SISTEM SPAM NOTIFIKASI BERTUBI-TUBI */
+    function triggerSpamAttack() {
+      const container = document.getElementById('spamBanners');
+      container.innerHTML = "";
+
+      const spams = [
+        { from: "MESSAGES • +62 813-9021-xxxx", text: "BUKA KAMERA DEPAN LO SEKARANG JUA!" },
+        { from: "MESSAGES • +62 878-4412-xxxx", text: "CEK KAMERA BURUAN SEBELUM TERLAMBAT!!" },
+        { from: "SYSTEM THREAT CORE", text: "Command: Access camera feed immediately." }
+      ];
+
+      spams.forEach((s, idx) => {
+        setTimeout(() => {
+          const banner = document.createElement('div');
+          banner.className = 'spam-banner';
+          banner.innerHTML = `<h5>${s.from} <span>Now</span></h5><p>${s.text}</p>`;
+          container.appendChild(banner);
+        }, idx * 700);
+      });
+
+      // Munculkan dialog panik Eyaa setelah spam selesai
+      setTimeout(() => {
+        document.getElementById('panicModal').style.display = 'flex';
+      }, 2400);
+    }
+
+    function goToCamera() {
+      document.getElementById('panicModal').style.display = 'none';
+      document.getElementById('spamBanners').innerHTML = "";
+      goHome();
+      openApp('cameraApp');
     }
   </script>
 </body>
