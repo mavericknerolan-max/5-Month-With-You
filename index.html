@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pandu & Eyaa — 5 Months</title>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400;1,600&display=swap" rel="stylesheet">
   <style>
     * {
       box-sizing: border-box;
@@ -85,7 +85,7 @@
       transition: all 0.2s;
     }
     .bgm-btn.active {
-      background: rgba(0, 122, 255, 0.8);
+      background: rgba(0, 122, 255, 0.85);
       border-color: #007aff;
     }
 
@@ -413,7 +413,7 @@
     .journal-card h4 { font-size: 14.5px; font-weight: 700; color: #2b2326; margin-bottom: 6px; }
     .journal-card p { font-size: 12.5px; color: #5c4f53; line-height: 1.6; }
 
-    /* === 6. APP: GALERI 5 SLIDES (CAROUSEL) === */
+    /* === 6. APP: GALERI 5 SLIDES CAROUSEL (.JPG) === */
     .slider-container {
       position: relative; width: 100%; height: 460px;
       margin: 15px 0; overflow: hidden; border-radius: 24px;
@@ -452,27 +452,36 @@
     .nav-dot { width: 8px; height: 8px; border-radius: 50%; background: #ddd; transition: all 0.2s; }
     .nav-dot.active { width: 20px; border-radius: 10px; background: #82384e; }
 
-    /* === 7. APP: SURAT PANJANG FULL ENGLISH === */
+    /* === 7. APP: SURAT PANJANG FULL ENGLISH + FOTO SURAT.JPG === */
     .letter-paper {
-      background: #ffffff; border-radius: 24px; padding: 22px 18px;
+      background: #ffffff; border-radius: 24px; padding: 24px 18px;
       box-shadow: 0 12px 30px rgba(130, 56, 78, 0.08); border: 1px solid #f2e2e5;
       margin-bottom: 25px;
     }
     .letter-photo {
-      width: 100%; height: 210px; object-fit: cover;
+      width: 100%; height: 220px; object-fit: cover;
       border-radius: 16px; margin-bottom: 18px; display: block;
       box-shadow: 0 4px 14px rgba(0,0,0,0.08);
     }
+    .letter-track-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #fdf2f4; border: 1px solid #ebd0d5;
+      color: #82384e; padding: 5px 12px; border-radius: 20px;
+      font-size: 11px; font-weight: 600; margin-bottom: 16px;
+    }
     .letter-salutation {
-      font-family: 'Playfair Display', serif; font-size: 18px;
+      font-family: 'Playfair Display', serif; font-size: 20px;
       font-style: italic; color: #82384e; margin-bottom: 14px;
     }
     .letter-body-en {
-      font-size: 12.8px; color: #443c40; line-height: 1.8; text-align: justify;
+      font-size: 13px; color: #443c40; line-height: 1.85; text-align: justify;
+    }
+    .letter-body-en p {
+      margin-bottom: 14px;
     }
     .letter-sign {
-      margin-top: 22px; text-align: right; font-family: 'Playfair Display', serif;
-      font-size: 15px; color: #82384e; font-style: italic;
+      margin-top: 26px; text-align: right; font-family: 'Playfair Display', serif;
+      font-size: 16px; color: #82384e; font-style: italic; line-height: 1.4;
     }
 
     /* HOME INDICATOR */
@@ -490,8 +499,10 @@
 </head>
 <body>
 
-  <!-- BACKGROUND MUSIC (lagu.mp3) -->
-  <audio id="bgmAudio" src="lagu.mp3" loop></audio>
+  <!-- BACKGROUND MUSIC FORMAT .FLAC (lagu.flac) -->
+  <audio id="bgmAudio" loop>
+    <source src="lagu.flac" type="audio/flac">
+  </audio>
 
   <div class="phone">
     <div class="island"></div>
@@ -729,7 +740,6 @@
 
     <!-- 5. APP: NOTES (KUIS OPSI A / B + NOTIF KECIL KE GALERI) -->
     <div class="screen app-window" id="notesApp">
-      <!-- NOTIFIKASI KECIL DROP-DOWN KE GALERI -->
       <div class="top-floating-banner" id="notesTopNotif" onclick="openApp('galleryApp')">
         <p style="font-size: 11px; color: #ff3b30; font-weight: 700; margin-bottom: 2px;">⚠️ SYSTEM INSTRUCTION • Messages</p>
         <p style="font-size: 12px; color: #eee;">"Catatan terverifikasi. Segera buka aplikasi <strong>Galeri</strong> Anda sekarang."</p>
@@ -742,7 +752,6 @@
       </div>
 
       <div class="app-body">
-        <!-- KUIS GERBANG VERIFIKASI SEBELUM BUKA CATATAN -->
         <div class="quiz-gate" id="notesQuizGate">
           <div style="font-size: 32px; margin-bottom: 8px;">🔒</div>
           <h3>Enkripsi Arsip Terkunci</h3>
@@ -753,18 +762,15 @@
           </div>
 
           <div class="quiz-options">
-            <!-- OPSI A: BENAR -->
             <button class="quiz-btn" onclick="answerNotesQuiz(true)">
               A. Karena dari awal capernya si bawel bikin candu, dan senyumnya selalu jadi tempat pulang paling nyaman buat Pandu.
             </button>
-            <!-- OPSI B: SALAH -->
             <button class="quiz-btn" onclick="answerNotesQuiz(false)">
               B. Cuma karena terpaksa nemenin orang berisik doang biar gak sepi.
             </button>
           </div>
         </div>
 
-        <!-- ISI CATATAN (TERSEMBUNYI SAMPAI OPSI A DIPILIH) -->
         <div id="notesActualContent" style="display: none;">
           <div class="journal-card">
             <span class="journal-badge">FILE 01 • AWAL MULA</span>
@@ -800,7 +806,7 @@
       </div>
     </div>
 
-    <!-- 6. APP: GALERI (5 SLIDES CAROUSEL ESTETIK) -->
+    <!-- 6. APP: GALERI (5 SLIDES FORMAT .JPG) -->
     <div class="screen app-window" id="galleryApp">
       <div class="app-header">
         <span class="back-btn" onclick="goHome()">‹ Home</span>
@@ -810,45 +816,45 @@
 
       <div class="app-body">
         <div class="slider-container" id="sliderContainer">
-          <!-- SLIDE 1 -->
+          <!-- SLIDE 1 (galeri1.jpg) -->
           <div class="slide-item active">
-            <img src="galeri1.jpeg" onerror="this.src='foto1.jpeg'" alt="Slide 1">
+            <img src="galeri1.jpg" onerror="this.src='foto1.jpeg'" alt="Slide 1">
             <div class="slide-caption">
               <h4>Slide 01 • The Beginning</h4>
               <p>"Dari yang awalnya saling sebel, sampai jadi orang yang paling ditunggu kabarnya."</p>
             </div>
           </div>
 
-          <!-- SLIDE 2 -->
+          <!-- SLIDE 2 (galeri2.jpg) -->
           <div class="slide-item">
-            <img src="galeri2.jpeg" onerror="this.src='foto2.jpeg'" alt="Slide 2">
+            <img src="galeri2.jpg" onerror="this.src='foto2.jpeg'" alt="Slide 2">
             <div class="slide-caption">
               <h4>Slide 02 • That Unforgettable Smile</h4>
               <p>"Momen PAP legendaris yang ngeruntuhin seluruh rasa gengsi gue."</p>
             </div>
           </div>
 
-          <!-- SLIDE 3 -->
+          <!-- SLIDE 3 (galeri3.jpg) -->
           <div class="slide-item">
-            <img src="galeri3.jpeg" onerror="this.src='foto3.jpeg'" alt="Slide 3">
+            <img src="galeri3.jpg" onerror="this.src='foto3.jpeg'" alt="Slide 3">
             <div class="slide-caption">
               <h4>Slide 03 • 10-05-26</h4>
               <p>"Titik di mana kita memutuskan buat melangkah berdua, ngelewatin semua hal bareng."</p>
             </div>
           </div>
 
-          <!-- SLIDE 4 -->
+          <!-- SLIDE 4 (galeri4.jpg) -->
           <div class="slide-item">
-            <img src="galeri4.jpeg" onerror="this.src='foto4.jpeg'" alt="Slide 4">
+            <img src="galeri4.jpg" onerror="this.src='foto4.jpeg'" alt="Slide 4">
             <div class="slide-caption">
               <h4>Slide 04 • Silly Fights & Sweet Hugs</h4>
               <p>"Debat hal sepele tiap hari, tapi ga pernah sedetik pun pengen udahan."</p>
             </div>
           </div>
 
-          <!-- SLIDE 5 -->
+          <!-- SLIDE 5 (galeri5.jpg) -->
           <div class="slide-item">
-            <img src="galeri5.jpeg" onerror="this.src='foto5.jpeg'" alt="Slide 5">
+            <img src="galeri5.jpg" onerror="this.src='foto5.jpeg'" alt="Slide 5">
             <div class="slide-caption">
               <h4>Slide 05 • 150 Days With You</h4>
               <p>"Terima kasih sudah bertahan sampai hari ini, si bawel kesayangan Pandu."</p>
@@ -856,7 +862,6 @@
           </div>
         </div>
 
-        <!-- KONTROL NAVIGASI SLIDE -->
         <div class="slider-nav">
           <div class="nav-arrow" onclick="moveSlide(-1)">‹</div>
           <div class="nav-dots" id="sliderDots">
@@ -877,7 +882,7 @@
       </div>
     </div>
 
-    <!-- 7. APP: SURAT (FULL ENGLISH, PANJANG, & TULUS + 1 FOTO) -->
+    <!-- 7. APP: SURAT (PANJANG, FULL ENGLISH, MANIS & PENDAMPING LAGU + surat.jpg) -->
     <div class="screen app-window" id="letterApp">
       <div class="app-header">
         <span class="back-btn" onclick="goHome()">‹ Home</span>
@@ -887,23 +892,29 @@
 
       <div class="app-body">
         <div class="letter-paper">
-          <!-- FOTO KHUSUS SURAT (surat.jpeg) -->
-          <img src="surat.jpeg" onerror="this.src='foto3.jpeg'" class="letter-photo" alt="Foto Surat">
+          <!-- FOTO SURAT (surat.jpg) -->
+          <img src="surat.jpg" onerror="this.src='foto3.jpeg'" class="letter-photo" alt="Foto Surat">
 
-          <div class="letter-salutation">Dearest Lune Jua,</div>
+          <div class="letter-track-badge">
+            <span>🎵</span> <em>Listening to Our Soundtrack</em>
+          </div>
+
+          <div class="letter-salutation">My Dearest Lune Jua,</div>
           
           <div class="letter-body-en">
-            <p>If you are reading this right now, it means you have gently walked through every single footprint of our five months journey together. I know I spend most of my days teasing you, making you pout, and testing your patience until you threaten to block me in frustration. But beneath all the mischievous banter and endless little arguments, I want you to know how deeply and genuinely thankful I am for your presence in my life.</p>
-            <br>
-            <p>Five months might seem like a brief chapter to the rest of the world, but with you, every single day has felt like an unforgettable universe of its own. You broke past every wall I built around myself simply by being your loud, radiant, and endlessly caring self. You effortlessly turned my quietest, most exhausting evenings into moments overflowing with genuine comfort and laughter. In a world that is often chaotic and demanding, having you as my person has been the gentlest peace I could ever ask for.</p>
-            <br>
-            <p>Thank you for choosing to stay by my side, for putting up with all my playful antics, and for loving me in ways I never even knew I needed. No matter how passionately we argue over the most trivial things in life, my heart has already made its final decision: it will always choose you, over and over again, without a single hesitation.</p>
-            <br>
-            <p>Happy 5th Month Anniversary, my sweet Lune. Here is to 150 days of us, and to every endless tomorrow we have yet to create side by side.</p>
+            <p>If this melody is playing softly in your ears right now, then take a quiet breath and let every word sink in. You have gently walked through every piece of memory we built across these five unforgettable months—from the playful chaos we started with, to the gentle stillness of the love we share today.</p>
+
+            <p>They say songs have a way of capturing moments that words alone cannot hold, and right now, every gentle note of this track belongs entirely to you. Five months may seem like a short season in the eyes of the world, but with you, every single day has felt like an entire lifetime of warmth. You stepped into my world when I had all my guards up, and without even trying, you melted every stubborn wall I built simply by being your authentic, cheerful, and endlessly radiant self.</p>
+
+            <p>I know I spend so much of my time teasing you, making you pout, and purposely testing your patience just so I can hear you grumble or see that adorable scowl on your face. But please know this with absolute certainty: beneath all the silly bickering and everyday debates over the most trivial things, my soul has never known a comfort deeper than yours. You turned my most exhausting evenings into a safe haven. Whenever the world feels too loud or overwhelming, hearing your voice or looking into your eyes is the only reminder I need that everything will be alright.</p>
+
+            <p>Thank you for choosing to stay by my side. Thank you for forgiving my mischievous habits, for laughing through our ridiculous arguments, and for loving me in ways that heal parts of me I never even knew were hurting. Loving you is the easiest, most natural decision my heart has ever made.</p>
+
+            <p>Happy 5th Month Anniversary, my sweet Lune. No matter how many seasons change or how much noise the future brings, I promise that as long as this song continues to play in our hearts, I will always choose you. Today, tomorrow, and through every endless melody that lies ahead of us.</p>
           </div>
 
           <div class="letter-sign">
-            With all my love and devotion,<br>
+            Forever and always yours,<br>
             <strong>Pandu Alistair</strong>
           </div>
         </div>
@@ -970,7 +981,7 @@
       }
     }
 
-    /* BGM BACKGROUND MUSIC TOGGLE */
+    /* BGM BACKGROUND MUSIC TOGGLE (lagu.flac) */
     function toggleBGM() {
       const audio = document.getElementById('bgmAudio');
       const btn = document.getElementById('bgmToggleBtn');
@@ -981,7 +992,7 @@
           btn.classList.add('active');
           text.innerText = 'Pause Lagu';
         }).catch(err => {
-          alert('Pastikan file lagu.mp3 sudah di-upload ke GitHub ya!');
+          alert('Pastikan file lagu.flac sudah kamu upload ke GitHub ya!');
         });
       } else {
         audio.pause();
@@ -1027,16 +1038,13 @@
       const notif = document.getElementById('notesTopNotif');
 
       if (isOptionA) {
-        // Jawaban Benar!
         gate.style.display = 'none';
         content.style.display = 'block';
 
-        // Munculkan notifikasi drop-down untuk segera buka galeri
         setTimeout(() => {
           notif.style.display = 'block';
         }, 1200);
       } else {
-        // Jawaban Salah
         gate.classList.add('shake');
         setTimeout(() => {
           gate.classList.remove('shake');
