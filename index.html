@@ -237,7 +237,7 @@
     .bubble-in { background: #e9e9eb; color: #000; align-self: flex-start; border-bottom-left-radius: 4px; }
     .msg-status { font-size: 10px; color: #8e8e93; text-align: right; margin-top: 3px; }
 
-    /* POP-UP NOTIFIKASI SPAM DARI NOMOR ASING */
+    /* POP-UP NOTIFIKASI SPAM */
     .spam-banner-container {
       position: absolute; top: 50px; left: 12px; right: 12px;
       z-index: 1500; display: flex; flex-direction: column; gap: 8px;
@@ -257,7 +257,7 @@
     .spam-banner h5 { font-size: 11.5px; color: #ff453a; margin-bottom: 2px; display: flex; justify-content: space-between; }
     .spam-banner p { font-size: 12px; color: #eee; font-weight: 500; }
 
-    /* MODAL RESPON PANIK EYAA */
+    /* MODAL PANIK EYAA */
     #panicModal {
       display: none;
       position: absolute; inset: 0; background: rgba(0,0,0,0.7);
@@ -271,38 +271,98 @@
     .panic-box h3 { font-size: 16px; color: #ff3b30; margin-bottom: 8px; }
     .panic-box p { font-size: 12.5px; color: #555; line-height: 1.5; margin-bottom: 16px; text-align: left; background: #f7f7f8; padding: 12px; border-radius: 12px; }
 
-    /* === 4. APP: KAMERA (IOS STYLE) === */
+    /* === 4. APP: KAMERA (EFEK CEKREK + SCANNING CYBER) === */
     #cameraApp {
-      background: #000; color: #fff; display: none;
+      background: #000; color: #fff; display: none; position: relative;
     }
+    
+    /* EFEK KILATAN FLASH KAMERA CEKREK */
+    .camera-flash {
+      position: absolute; inset: 0; background: #fff;
+      z-index: 2500; opacity: 0; pointer-events: none;
+      transition: opacity 0.15s ease-out;
+    }
+    .flash-on { opacity: 0.95; }
+
     .camera-top-bar {
-      padding: 45px 20px 10px; display: flex; justify-content: space-between; font-size: 14px; color: #ffcc00;
+      padding: 45px 20px 10px; display: flex; justify-content: space-between; font-size: 14px; color: #ffcc00; z-index: 10;
     }
     .camera-viewfinder {
       flex: 1; margin: 10px 14px; border-radius: 24px; overflow: hidden;
-      position: relative; background: #1a1a1a; display: flex; align-items: center; justify-content: center;
+      position: relative; background: #111; display: flex; align-items: center; justify-content: center;
     }
-    .camera-viewfinder img {
-      width: 100%; height: 100%; object-fit: cover;
+    .camera-viewfinder video {
+      width: 100%; height: 100%; object-fit: cover; display: block;
     }
+
+    /* LAYER SCANNING DAN LOADING CYBER */
+    .camera-scan-overlay {
+      position: absolute; inset: 0; background: rgba(5, 8, 12, 0.95);
+      z-index: 50; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; padding: 20px;
+      transition: opacity 0.5s ease;
+    }
+
+    /* GARIS LASER SCANNER NAIK TURUN */
+    .scanner-laser {
+      position: absolute; width: 100%; height: 3px;
+      background: #00ffcc;
+      box-shadow: 0 0 15px #00ffcc, 0 0 30px #00ffcc;
+      animation: scanLaser 1.3s ease-in-out infinite alternate;
+    }
+
+    /* KOTAK TARGET RETICLE */
+    .scanner-target {
+      width: 140px; height: 140px; border: 2px dashed #00ffcc;
+      border-radius: 20px; position: relative; margin-bottom: 25px;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 0 20px rgba(0, 255, 204, 0.2);
+    }
+    .scanner-target::before {
+      content: '+'; font-size: 26px; color: #00ffcc; font-weight: 300;
+    }
+
+    .scan-status-text {
+      font-size: 11px; font-family: monospace; color: #00ffcc;
+      letter-spacing: 1px; margin-bottom: 8px; text-align: center;
+    }
+
+    .scan-progress-bar {
+      width: 180px; height: 5px; background: rgba(255,255,255,0.15);
+      border-radius: 10px; overflow: hidden; position: relative;
+    }
+    .scan-progress-fill {
+      width: 0%; height: 100%; background: #00ffcc;
+      box-shadow: 0 0 10px #00ffcc; transition: width 0.1s linear;
+    }
+
+    /* KOTAK FOKUS KUNING */
     .camera-focus-box {
       position: absolute; width: 130px; height: 130px;
       border: 1.5px solid #ffcc00; border-radius: 12px;
       box-shadow: 0 0 15px rgba(255, 204, 0, 0.4);
-      animation: pulse 1.5s infinite;
+      animation: pulse 1.5s infinite; pointer-events: none;
     }
     .camera-rec {
       position: absolute; top: 14px; left: 16px;
       background: rgba(0,0,0,0.6); padding: 4px 10px; border-radius: 20px;
       font-size: 11px; font-weight: 700; color: #ff3b30; display: flex; align-items: center; gap: 6px;
+      z-index: 5;
+    }
+    .sound-btn {
+      position: absolute; top: 14px; right: 16px;
+      background: rgba(0,0,0,0.65); border: 1px solid rgba(255,255,255,0.3);
+      color: #fff; padding: 5px 12px; border-radius: 20px;
+      font-size: 11px; font-weight: 600; cursor: pointer; z-index: 10;
     }
     .camera-alert-overlay {
       position: absolute; bottom: 12px; left: 12px; right: 12px;
-      background: rgba(0,0,0,0.75); backdrop-filter: blur(10px);
+      background: rgba(0,0,0,0.78); backdrop-filter: blur(10px);
       padding: 10px 12px; border-radius: 14px; text-align: center; border: 1px solid rgba(255,255,255,0.2);
+      z-index: 5;
     }
     .camera-controls {
-      height: 110px; display: flex; align-items: center; justify-content: space-around; padding-bottom: 20px;
+      height: 110px; display: flex; align-items: center; justify-content: space-around; padding-bottom: 20px; z-index: 10;
     }
     .shutter-btn {
       width: 66px; height: 66px; border-radius: 50%;
@@ -338,6 +398,7 @@
     @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.02); } 100% { transform: scale(1); } }
     @keyframes shake { 0%, 100% { transform: translateX(0); } 20%, 60% { transform: translateX(-8px); } 40%, 80% { transform: translateX(8px); } }
     @keyframes slideDown { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    @keyframes scanLaser { 0% { top: 12%; opacity: 0.3; } 100% { top: 86%; opacity: 1; } }
     .shake { animation: shake 0.3s; }
   </style>
 </head>
@@ -519,7 +580,7 @@
           </div>
         </div>
 
-        <!-- MODAL DIALOG PANIK EYAA SETELAH DISPAM -->
+        <!-- MODAL DIALOG PANIK EYAA -->
         <div id="panicModal">
           <div class="panic-box">
             <h3>🚨 INCOMING SPAM OVERLOAD</h3>
@@ -538,16 +599,29 @@
 
     </div>
 
-    <!-- 4. APP: KAMERA (IOS CAMERA SIMULATOR) -->
+    <!-- 4. APP: KAMERA (EFEK FLASH CEKREK + SCANNING CYBER + VIDEO PLAYBACK) -->
     <div class="screen app-window" id="cameraApp">
+      <!-- FLASH CEKREK -->
+      <div class="camera-flash" id="cameraFlash"></div>
+
       <div class="camera-top-bar">
         <span>⚡ Auto</span>
         <span onclick="goHome()" style="color: #fff; cursor: pointer; font-weight: 600;">✕ Keluar</span>
       </div>
 
       <div class="camera-viewfinder">
-        <!-- FOTO EYAA DI KAMERA (GANTI DENGAN kamera.jpeg) -->
-        <img src="kamera.jpeg" onerror="this.src='foto2.jpeg'" alt="Camera Viewfinder">
+        <!-- LAYER EFEK SCANNING HACKER -->
+        <div class="camera-scan-overlay" id="scanOverlay">
+          <div class="scanner-laser"></div>
+          <div class="scanner-target"></div>
+          <div class="scan-status-text" id="scanStatus">[!] SCANNING OPTICAL FEED...</div>
+          <div class="scan-progress-bar">
+            <div class="scan-progress-fill" id="scanProgress"></div>
+          </div>
+        </div>
+
+        <!-- VIDEO PLAYER AUTOPLAY (video.mp4) -->
+        <video id="cameraVideo" src="video.mp4" poster="foto2.jpeg" autoplay loop muted playsinline></video>
 
         <!-- KOTAK FOKUS KUNING KHAS IPHONE -->
         <div class="camera-focus-box"></div>
@@ -556,10 +630,15 @@
           <span>● REC</span> 00:05
         </div>
 
+        <!-- TOMBOL TOGGLE SUARA VIDEO -->
+        <button onclick="toggleVideoSound()" class="sound-btn" id="soundBtn">
+          🔇 Bisu (Ketuk buat suara)
+        </button>
+
         <div class="camera-alert-overlay">
-          <p style="font-size: 12px; font-weight: 700; color: #ffcc00; margin-bottom: 2px;">⚠️ CAMERA HIJACKED</p>
+          <p style="font-size: 12px; font-weight: 700; color: #ffcc00; margin-bottom: 2px;">🎥 MEMORY PLAYBACK</p>
           <p style="font-size: 11px; color: #fff; line-height: 1.3;">
-            "Tuh kan, tegang banget mukanya wkwk... Sekarang buka aplikasi <strong>'Catatan'</strong> dan <strong>'Surat'</strong> kalau mau tahu dalang aslinya!"
+            "Bukan kamera pengintai, tapi video momen kita berdua ❤️ Sekarang buka <strong>'Catatan'</strong> dan <strong>'Surat'</strong>!"
           </p>
         </div>
       </div>
@@ -717,16 +796,25 @@
       }
     }
 
+    /* BUKA APLIKASI */
     function openApp(appId) {
       document.getElementById('homescreen').style.display = 'none';
       document.getElementById(appId).style.display = 'flex';
-      if(appId === 'chatApp') {
-        backToInbox();
-      }
-      if(appId === 'cameraApp') {
+      
+      const vid = document.getElementById('cameraVideo');
+
+      if (appId === 'cameraApp') {
         document.getElementById('statusBar').style.color = '#fff';
+        startCameraSequence(); // JALANKAN EFEK CEKREK + SCANNING
       } else {
         document.getElementById('statusBar').style.color = '#2b2326';
+        if (vid) {
+          vid.pause();
+        }
+      }
+
+      if (appId === 'chatApp') {
+        backToInbox();
       }
     }
 
@@ -735,6 +823,78 @@
       windows.forEach(win => win.style.display = 'none');
       document.getElementById('homescreen').style.display = 'block';
       document.getElementById('statusBar').style.color = '#2b2326';
+
+      const vid = document.getElementById('cameraVideo');
+      if (vid) {
+        vid.pause();
+      }
+    }
+
+    /* KONTROL SUARA VIDEO DI KAMERA */
+    function toggleVideoSound() {
+      const vid = document.getElementById('cameraVideo');
+      const btn = document.getElementById('soundBtn');
+      if (vid.muted) {
+        vid.muted = false;
+        vid.play();
+        btn.innerText = '🔊 Suara Aktif';
+      } else {
+        vid.muted = true;
+        btn.innerText = '🔇 Bisu';
+      }
+    }
+
+    /* EFEK CEKREK (FLASH) + SCANNING CYBER HACKER */
+    function startCameraSequence() {
+      const flash = document.getElementById('cameraFlash');
+      const overlay = document.getElementById('scanOverlay');
+      const status = document.getElementById('scanStatus');
+      const progress = document.getElementById('scanProgress');
+      const vid = document.getElementById('cameraVideo');
+
+      // 1. Reset state
+      overlay.style.display = 'flex';
+      overlay.style.opacity = '1';
+      progress.style.width = '0%';
+      if (vid) vid.pause();
+
+      // 2. Efek Cekrek (Kilatan Cahaya Putih)
+      flash.classList.add('flash-on');
+      setTimeout(() => {
+        flash.classList.remove('flash-on');
+      }, 150);
+
+      // 3. Animasi Loading & Scanning Hacker
+      let currentProgress = 0;
+      const interval = setInterval(() => {
+        currentProgress += 5;
+        progress.style.width = currentProgress + '%';
+
+        if (currentProgress < 30) {
+          status.innerText = '[!] SCANNING OPTICAL FEED...';
+        } else if (currentProgress < 65) {
+          status.innerText = '[!] DETECTING BIOMETRICS: LUNE JUA (' + currentProgress + '%)';
+        } else if (currentProgress < 95) {
+          status.innerText = '[!] DECRYPTING HIDDEN MEMORY FEED...';
+        } else {
+          status.innerText = '[✓] ACCESS GRANTED: PLAYING FILE';
+        }
+
+        // 4. Selesai scan -> buka video
+        if (currentProgress >= 100) {
+          clearInterval(interval);
+          setTimeout(() => {
+            overlay.style.opacity = '0';
+            setTimeout(() => {
+              overlay.style.display = 'none';
+              if (vid) {
+                vid.currentTime = 0;
+                vid.play().catch(e => console.log(e));
+              }
+            }, 450);
+          }, 300);
+        }
+      }, 90);
     }
 
     /* iMESSAGE NAVIGATION */
@@ -771,7 +931,6 @@
         }, idx * 700);
       });
 
-      // Munculkan dialog panik Eyaa setelah spam selesai
       setTimeout(() => {
         document.getElementById('panicModal').style.display = 'flex';
       }, 2400);
