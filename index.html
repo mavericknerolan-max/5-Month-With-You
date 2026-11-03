@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pandu & Eyaa — 5 Months</title>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
   <style>
     * {
       box-sizing: border-box;
@@ -62,6 +62,31 @@
       font-weight: 600;
       z-index: 900;
       color: #fff;
+    }
+
+    /* FLOATING BGM BUTTON */
+    .bgm-btn {
+      position: absolute;
+      top: 48px;
+      right: 16px;
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      color: #fff;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      z-index: 1200;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.2s;
+    }
+    .bgm-btn.active {
+      background: rgba(0, 122, 255, 0.8);
+      border-color: #007aff;
     }
 
     /* SCREENS */
@@ -200,7 +225,19 @@
     }
 
     .back-btn { color: #007aff; font-size: 14px; font-weight: 600; cursor: pointer; }
-    .app-body { padding: 16px; overflow-y: auto; flex: 1; }
+    .app-body { padding: 16px; overflow-y: auto; flex: 1; position: relative; }
+
+    /* GLOBAL TOP NOTIFICATION DROPDOWN */
+    .top-floating-banner {
+      position: absolute; top: 12px; left: 14px; right: 14px;
+      background: rgba(28, 28, 30, 0.94); backdrop-filter: blur(20px);
+      border-radius: 18px; padding: 12px 14px; color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+      z-index: 2500; display: none;
+      animation: slideDown 0.4s ease;
+      cursor: pointer;
+    }
 
     /* === iMESSAGE INBOX & CHATS === */
     #chatApp { background: #fff; position: relative; }
@@ -275,8 +312,6 @@
     #cameraApp {
       background: #000; color: #fff; display: none; position: relative;
     }
-    
-    /* EFEK KILATAN FLASH KAMERA CEKREK */
     .camera-flash {
       position: absolute; inset: 0; background: #fff;
       z-index: 2500; opacity: 0; pointer-events: none;
@@ -295,48 +330,29 @@
       width: 100%; height: 100%; object-fit: cover; display: block;
     }
 
-    /* LAYER SCANNING DAN LOADING CYBER */
     .camera-scan-overlay {
       position: absolute; inset: 0; background: rgba(5, 8, 12, 0.95);
       z-index: 50; display: flex; flex-direction: column;
       align-items: center; justify-content: center; padding: 20px;
       transition: opacity 0.5s ease;
     }
-
-    /* GARIS LASER SCANNER NAIK TURUN */
     .scanner-laser {
       position: absolute; width: 100%; height: 3px;
       background: #00ffcc;
       box-shadow: 0 0 15px #00ffcc, 0 0 30px #00ffcc;
       animation: scanLaser 1.3s ease-in-out infinite alternate;
     }
-
-    /* KOTAK TARGET RETICLE */
     .scanner-target {
       width: 140px; height: 140px; border: 2px dashed #00ffcc;
       border-radius: 20px; position: relative; margin-bottom: 25px;
       display: flex; align-items: center; justify-content: center;
       box-shadow: 0 0 20px rgba(0, 255, 204, 0.2);
     }
-    .scanner-target::before {
-      content: '+'; font-size: 26px; color: #00ffcc; font-weight: 300;
-    }
+    .scanner-target::before { content: '+'; font-size: 26px; color: #00ffcc; font-weight: 300; }
+    .scan-status-text { font-size: 11px; font-family: monospace; color: #00ffcc; letter-spacing: 1px; margin-bottom: 8px; text-align: center; }
+    .scan-progress-bar { width: 180px; height: 5px; background: rgba(255,255,255,0.15); border-radius: 10px; overflow: hidden; }
+    .scan-progress-fill { width: 0%; height: 100%; background: #00ffcc; box-shadow: 0 0 10px #00ffcc; transition: width 0.1s linear; }
 
-    .scan-status-text {
-      font-size: 11px; font-family: monospace; color: #00ffcc;
-      letter-spacing: 1px; margin-bottom: 8px; text-align: center;
-    }
-
-    .scan-progress-bar {
-      width: 180px; height: 5px; background: rgba(255,255,255,0.15);
-      border-radius: 10px; overflow: hidden; position: relative;
-    }
-    .scan-progress-fill {
-      width: 0%; height: 100%; background: #00ffcc;
-      box-shadow: 0 0 10px #00ffcc; transition: width 0.1s linear;
-    }
-
-    /* KOTAK FOKUS KUNING */
     .camera-focus-box {
       position: absolute; width: 130px; height: 130px;
       border: 1.5px solid #ffcc00; border-radius: 12px;
@@ -346,8 +362,7 @@
     .camera-rec {
       position: absolute; top: 14px; left: 16px;
       background: rgba(0,0,0,0.6); padding: 4px 10px; border-radius: 20px;
-      font-size: 11px; font-weight: 700; color: #ff3b30; display: flex; align-items: center; gap: 6px;
-      z-index: 5;
+      font-size: 11px; font-weight: 700; color: #ff3b30; display: flex; align-items: center; gap: 6px; z-index: 5;
     }
     .sound-btn {
       position: absolute; top: 14px; right: 16px;
@@ -358,8 +373,7 @@
     .camera-alert-overlay {
       position: absolute; bottom: 12px; left: 12px; right: 12px;
       background: rgba(0,0,0,0.78); backdrop-filter: blur(10px);
-      padding: 10px 12px; border-radius: 14px; text-align: center; border: 1px solid rgba(255,255,255,0.2);
-      z-index: 5;
+      padding: 10px 12px; border-radius: 14px; text-align: center; border: 1px solid rgba(255,255,255,0.2); z-index: 5;
     }
     .camera-controls {
       height: 110px; display: flex; align-items: center; justify-content: space-around; padding-bottom: 20px; z-index: 10;
@@ -370,7 +384,23 @@
     }
     .shutter-inner { width: 100%; height: 100%; background: #fff; border-radius: 50%; }
 
-    /* NOTES STYLING */
+    /* === 5. APP: NOTES DENGAN KUIS OPSI A / B === */
+    .quiz-gate {
+      background: #fff; border-radius: 24px; padding: 22px 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06); text-align: center;
+      margin-top: 40px; border: 1px solid #f2e2e5;
+    }
+    .quiz-gate h3 { font-size: 16px; color: #82384e; margin-bottom: 8px; }
+    .quiz-gate p { font-size: 13px; color: #666; line-height: 1.5; margin-bottom: 20px; }
+    
+    .quiz-options { display: flex; flex-direction: column; gap: 12px; }
+    .quiz-btn {
+      padding: 14px 16px; border-radius: 16px; border: 1.5px solid #ebd9dc;
+      background: #faf4f5; text-align: left; font-size: 13px; font-weight: 600;
+      color: #333; cursor: pointer; transition: all 0.2s;
+    }
+    .quiz-btn:active { transform: scale(0.97); }
+
     .journal-card {
       background: #ffffff; border-radius: 22px; padding: 14px; margin-bottom: 22px;
       box-shadow: 0 10px 25px rgba(130, 56, 78, 0.08); border: 1px solid #f2e2e5;
@@ -383,11 +413,67 @@
     .journal-card h4 { font-size: 14.5px; font-weight: 700; color: #2b2326; margin-bottom: 6px; }
     .journal-card p { font-size: 12.5px; color: #5c4f53; line-height: 1.6; }
 
-    /* POLAROID GALLERY */
-    .polaroid-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .polaroid { background: #fff; padding: 8px 8px 14px; border-radius: 8px; box-shadow: 0 3px 10px rgba(0,0,0,0.08); text-align: center; }
-    .polaroid img { width: 100%; height: 120px; object-fit: cover; border-radius: 4px; background: #eee; }
-    .polaroid span { display: block; font-size: 11px; font-weight: 600; color: #777; margin-top: 6px; }
+    /* === 6. APP: GALERI 5 SLIDES (CAROUSEL) === */
+    .slider-container {
+      position: relative; width: 100%; height: 460px;
+      margin: 15px 0; overflow: hidden; border-radius: 24px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.1); background: #fff;
+    }
+    .slide-item {
+      position: absolute; inset: 0; opacity: 0;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      display: flex; flex-direction: column;
+      pointer-events: none; transform: scale(0.96);
+    }
+    .slide-item.active {
+      opacity: 1; pointer-events: auto; transform: scale(1);
+    }
+    .slide-item img {
+      width: 100%; height: 350px; object-fit: cover;
+    }
+    .slide-caption {
+      padding: 16px; background: #fff; flex: 1; text-align: center;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .slide-caption h4 { font-size: 14px; color: #82384e; margin-bottom: 4px; }
+    .slide-caption p { font-size: 11.5px; color: #666; }
+
+    .slider-nav {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-top: 10px; padding: 0 10px;
+    }
+    .nav-arrow {
+      width: 40px; height: 40px; border-radius: 50%; background: #fff;
+      border: 1px solid #ebd9dc; color: #82384e; font-size: 18px;
+      font-weight: 700; display: flex; align-items: center; justify-content: center;
+      cursor: pointer; box-shadow: 0 3px 8px rgba(0,0,0,0.06);
+    }
+    .nav-dots { display: flex; gap: 6px; }
+    .nav-dot { width: 8px; height: 8px; border-radius: 50%; background: #ddd; transition: all 0.2s; }
+    .nav-dot.active { width: 20px; border-radius: 10px; background: #82384e; }
+
+    /* === 7. APP: SURAT PANJANG FULL ENGLISH === */
+    .letter-paper {
+      background: #ffffff; border-radius: 24px; padding: 22px 18px;
+      box-shadow: 0 12px 30px rgba(130, 56, 78, 0.08); border: 1px solid #f2e2e5;
+      margin-bottom: 25px;
+    }
+    .letter-photo {
+      width: 100%; height: 210px; object-fit: cover;
+      border-radius: 16px; margin-bottom: 18px; display: block;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+    }
+    .letter-salutation {
+      font-family: 'Playfair Display', serif; font-size: 18px;
+      font-style: italic; color: #82384e; margin-bottom: 14px;
+    }
+    .letter-body-en {
+      font-size: 12.8px; color: #443c40; line-height: 1.8; text-align: justify;
+    }
+    .letter-sign {
+      margin-top: 22px; text-align: right; font-family: 'Playfair Display', serif;
+      font-size: 15px; color: #82384e; font-style: italic;
+    }
 
     /* HOME INDICATOR */
     .home-indicator {
@@ -399,17 +485,25 @@
     @keyframes shake { 0%, 100% { transform: translateX(0); } 20%, 60% { transform: translateX(-8px); } 40%, 80% { transform: translateX(8px); } }
     @keyframes slideDown { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
     @keyframes scanLaser { 0% { top: 12%; opacity: 0.3; } 100% { top: 86%; opacity: 1; } }
-    .shake { animation: shake 0.3s; }
+    .shake { animation: shake 0.35s; }
   </style>
 </head>
 <body>
 
+  <!-- BACKGROUND MUSIC (lagu.mp3) -->
+  <audio id="bgmAudio" src="lagu.mp3" loop></audio>
+
   <div class="phone">
     <div class="island"></div>
 
+    <!-- TOMBOL PLAY / PAUSE LAGU -->
+    <button class="bgm-btn" id="bgmToggleBtn" onclick="toggleBGM()">
+      <span id="bgmIcon">🎵</span> <span id="bgmText">Play Lagu</span>
+    </button>
+
     <div class="status-bar" id="statusBar">
       <span>14:30</span>
-      <span>5G 100%</span>
+      <span style="margin-right: 75px;">5G 100%</span>
     </div>
 
     <!-- 1. LOCKSCREEN -->
@@ -459,7 +553,7 @@
     <div class="screen" id="homescreen">
       <div class="widget-box">
         <h3>⚠️ SYSTEM OVERRIDE ACTIVE</h3>
-        <p>"Akses aplikasi dibatasi. Selesaikan urutan instruksi: Pesan ➔ Kamera ➔ Catatan ➔ Surat."</p>
+        <p>"Akses aplikasi dibatasi. Selesaikan urutan instruksi: Pesan ➔ Kamera ➔ Catatan ➔ Galeri ➔ Surat."</p>
       </div>
 
       <div class="apps-grid">
@@ -491,11 +585,8 @@
 
     <!-- 3. APP: iMESSAGE INBOX & CONVERSATIONS -->
     <div class="screen app-window" id="chatApp">
-
-      <!-- SPAM NOTIFICATIONS CONTAINER -->
       <div class="spam-banner-container" id="spamBanners"></div>
 
-      <!-- VIEW A: INBOX DAFTAR PESAN -->
       <div id="inboxView" style="display: flex; flex-direction: column; height: 100%;">
         <div class="imsg-list-header">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
@@ -507,7 +598,6 @@
         </div>
 
         <div class="app-body" style="padding: 0;">
-          <!-- CHAT 1: PANDU -->
           <div class="chat-row" onclick="openChat('chatPanduView')">
             <div class="chat-avatar avatar-pandu">P</div>
             <div class="chat-row-info">
@@ -519,7 +609,6 @@
             </div>
           </div>
 
-          <!-- CHAT 2: UNKNOWN -->
           <div class="chat-row" onclick="openChat('chatUnknownView')">
             <div class="unread-dot"></div>
             <div class="chat-avatar avatar-unknown">⚠️</div>
@@ -534,7 +623,6 @@
         </div>
       </div>
 
-      <!-- VIEW B: CHAT DENGAN PANDU -->
       <div class="chat-detail-view" id="chatPanduView">
         <div class="app-header">
           <span class="back-btn" onclick="backToInbox()">‹ Messages</span>
@@ -552,7 +640,6 @@
         </div>
       </div>
 
-      <!-- VIEW C: CHAT DENGAN UNKNOWN -->
       <div class="chat-detail-view" id="chatUnknownView">
         <div class="app-header">
           <span class="back-btn" onclick="backToInbox()">‹ Messages</span>
@@ -565,14 +652,12 @@
         </div>
         <div class="app-body" id="unknownChatBody">
           <div style="text-align: center; font-size: 11px; color: #8e8e93; margin-bottom: 15px;">Hari ini 14:28</div>
-
           <div class="imsg-row"><div class="bubble bubble-in">Selamat siang, Saudari Lune Jua.</div></div>
           <div class="imsg-row"><div class="bubble bubble-out">Ini siapa ya?? Dapet nomor saya dari mana?!</div><div class="msg-status">Delivered</div></div>
           <div class="imsg-row"><div class="bubble bubble-in">Identitas saya tidak relevan. Yang perlu Anda pahami: perangkat Anda berada di bawah pantauan kami secara menyeluruh.</div></div>
           <div class="imsg-row"><div class="bubble bubble-out">Maksudnya apa ya?! Jangan main-main atau saya laporin polisi! 😡</div><div class="msg-status">Delivered</div></div>
           <div class="imsg-row"><div class="bubble bubble-in">Kami memegang akses galeri, berkas, dan aktivitas Anda. Segala upaya pembangkangan akan berakibat fatal.</div></div>
 
-          <!-- TOMBOL TRIGGER TEROR SPAM -->
           <div style="text-align: center; margin: 25px 0 10px;">
             <button onclick="triggerSpamAttack()" style="background: #ff3b30; color: #fff; border: none; padding: 10px 18px; border-radius: 20px; font-size: 12px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 15px rgba(255, 59, 48, 0.4);">
               ⚠️ [ Balas & Lihat Kejadian Selanjutnya ]
@@ -580,7 +665,6 @@
           </div>
         </div>
 
-        <!-- MODAL DIALOG PANIK EYAA -->
         <div id="panicModal">
           <div class="panic-box">
             <h3>🚨 INCOMING SPAM OVERLOAD</h3>
@@ -594,14 +678,11 @@
             </button>
           </div>
         </div>
-
       </div>
-
     </div>
 
-    <!-- 4. APP: KAMERA (EFEK FLASH CEKREK + SCANNING CYBER + VIDEO PLAYBACK) -->
+    <!-- 4. APP: KAMERA (AFTER SELESAI -> ARAHKAN KE CATATAN) -->
     <div class="screen app-window" id="cameraApp">
-      <!-- FLASH CEKREK -->
       <div class="camera-flash" id="cameraFlash"></div>
 
       <div class="camera-top-bar">
@@ -610,7 +691,6 @@
       </div>
 
       <div class="camera-viewfinder">
-        <!-- LAYER EFEK SCANNING HACKER -->
         <div class="camera-scan-overlay" id="scanOverlay">
           <div class="scanner-laser"></div>
           <div class="scanner-target"></div>
@@ -620,25 +700,18 @@
           </div>
         </div>
 
-        <!-- VIDEO PLAYER AUTOPLAY (video.mp4) -->
         <video id="cameraVideo" src="video.mp4" poster="foto2.jpeg" autoplay loop muted playsinline></video>
-
-        <!-- KOTAK FOKUS KUNING KHAS IPHONE -->
         <div class="camera-focus-box"></div>
+        <div class="camera-rec"><span>● REC</span> 00:05</div>
 
-        <div class="camera-rec">
-          <span>● REC</span> 00:05
-        </div>
-
-        <!-- TOMBOL TOGGLE SUARA VIDEO -->
         <button onclick="toggleVideoSound()" class="sound-btn" id="soundBtn">
           🔇 Bisu (Ketuk buat suara)
         </button>
 
         <div class="camera-alert-overlay">
-          <p style="font-size: 12px; font-weight: 700; color: #ffcc00; margin-bottom: 2px;">🎥 MEMORY PLAYBACK</p>
+          <p style="font-size: 12px; font-weight: 700; color: #ffcc00; margin-bottom: 2px;">⚠️ BIOMETRICS VERIFIED</p>
           <p style="font-size: 11px; color: #fff; line-height: 1.3;">
-            "Bukan kamera pengintai, tapi video momen kita berdua ❤️ Sekarang buka <strong>'Catatan'</strong> dan <strong>'Surat'</strong>!"
+            "Wajah target terkonfirmasi. Buka aplikasi <strong>'Catatan'</strong> terlebih dahulu untuk menjawab kunci enkripsi!"
           </p>
         </div>
       </div>
@@ -654,83 +727,186 @@
       </div>
     </div>
 
-    <!-- 5. APP: NOTES (AESTHETIC SCRAPBOOK 5 BULAN) -->
+    <!-- 5. APP: NOTES (KUIS OPSI A / B + NOTIF KECIL KE GALERI) -->
     <div class="screen app-window" id="notesApp">
+      <!-- NOTIFIKASI KECIL DROP-DOWN KE GALERI -->
+      <div class="top-floating-banner" id="notesTopNotif" onclick="openApp('galleryApp')">
+        <p style="font-size: 11px; color: #ff3b30; font-weight: 700; margin-bottom: 2px;">⚠️ SYSTEM INSTRUCTION • Messages</p>
+        <p style="font-size: 12px; color: #eee;">"Catatan terverifikasi. Segera buka aplikasi <strong>Galeri</strong> Anda sekarang."</p>
+      </div>
+
       <div class="app-header">
         <span class="back-btn" onclick="goHome()">‹ Home</span>
         <span style="font-size: 14px; font-weight: 700; color: #82384e;">Arsip Si Bawel 📖</span>
         <span style="width: 40px;"></span>
       </div>
+
       <div class="app-body">
-        <div class="journal-card">
-          <span class="journal-badge">FILE 01 • AWAL MULA</span>
-          <img src="foto1.jpeg" class="journal-photo" alt="Foto Bulan 1">
-          <h4>Si Berisik yang Caper</h4>
-          <p>Awal kenal sumpah ini orang kenapa berisik banget dah? Tiap hari ada aja yang dibawelin, makin gue cuekin makin menjadi-jadi capernya. Tapi anehnya... kalau sehari lo ga muncul, roomchat gue berasa sepi banget.</p>
+        <!-- KUIS GERBANG VERIFIKASI SEBELUM BUKA CATATAN -->
+        <div class="quiz-gate" id="notesQuizGate">
+          <div style="font-size: 32px; margin-bottom: 8px;">🔒</div>
+          <h3>Enkripsi Arsip Terkunci</h3>
+          <p>Jawab pertanyaan ini dengan benar untuk memverifikasi bahwa Anda adalah <strong>Lune Jua</strong> yang sesungguhnya:</p>
+          
+          <div style="background: #faf4f5; padding: 14px; border-radius: 14px; margin-bottom: 18px; border: 1px dashed #ebd9dc; font-size: 13px; font-weight: 600; color: #82384e;">
+            "Apa hal yang paling bikin seorang Pandu Alistair gak bisa lepas dan takluk sama si bawel Eyaa?"
+          </div>
+
+          <div class="quiz-options">
+            <!-- OPSI A: BENAR -->
+            <button class="quiz-btn" onclick="answerNotesQuiz(true)">
+              A. Karena dari awal capernya si bawel bikin candu, dan senyumnya selalu jadi tempat pulang paling nyaman buat Pandu.
+            </button>
+            <!-- OPSI B: SALAH -->
+            <button class="quiz-btn" onclick="answerNotesQuiz(false)">
+              B. Cuma karena terpaksa nemenin orang berisik doang biar gak sepi.
+            </button>
+          </div>
         </div>
-        <div class="journal-card">
-          <span class="journal-badge">FILE 02 • THE TURNING POINT</span>
-          <img src="foto2.jpeg" class="journal-photo" alt="Foto Bulan 2">
-          <h4>PAP Penjebol Pertahanan</h4>
-          <p>Gue iseng bilang "lagi capek nih, semangatin kek". Ekspektasi gue paling diketawain. Eh dia malah kirim PAP mukanya sendiri: <em>"Tuh liat muka gue langsung seger kan lo?"</em>. Di situ pertahanan gue runtuh total. Fix gue naksir si bawel.</p>
-        </div>
-        <div class="journal-card">
-          <span class="journal-badge">FILE 03 • 10-05-26</span>
-          <img src="foto3.jpeg" class="journal-photo" alt="Foto Bulan 3">
-          <h4>Resmi Tapi Tetap Gelud</h4>
-          <p>Hari jadian kita. Tetap pake debat siapa yang suka duluan. Lo ngeyel bilang gue yang nembak, padahal jelas-jelas lo yang caper duluan dari awal wkwk. Tapi gapapa, yang penting si bawel akhirnya jadi punya gue.</p>
-        </div>
-        <div class="journal-card">
-          <span class="journal-badge">FILE 04 • LOVE LANGUAGE</span>
-          <img src="foto4.jpeg" class="journal-photo" alt="Foto Bulan 4">
-          <h4>Hobi Bikin Lo Nangis & Kesel</h4>
-          <p>Fase di mana gue makin hobi ngerjain lo sampe bibir lo maju 5 senti mau nangis. Lucu banget soalnya. Tapi ya gitu, gue yang bikin kesel, gue juga yang kelabakan meluk dan nyari cara biar lo senyum lagi.</p>
-        </div>
-        <div class="journal-card">
-          <span class="journal-badge">FILE 05 • PRESENT DAY</span>
-          <img src="foto5.jpeg" class="journal-photo" alt="Foto Bulan 5">
-          <h4>Hari Ini & Seterusnya ❤️</h4>
-          <p>5 bulan cepet banget ya Eyaa. Makasih udah bertahan sama sifat jahil gue. Debat hal gak penting kita jangan pernah ilang ya, gacor terus pokoknya!</p>
+
+        <!-- ISI CATATAN (TERSEMBUNYI SAMPAI OPSI A DIPILIH) -->
+        <div id="notesActualContent" style="display: none;">
+          <div class="journal-card">
+            <span class="journal-badge">FILE 01 • AWAL MULA</span>
+            <img src="foto1.jpeg" class="journal-photo" alt="Foto Bulan 1">
+            <h4>Si Berisik yang Caper</h4>
+            <p>Awal kenal sumpah ini orang kenapa berisik banget dah? Tiap hari ada aja yang dibawelin, makin gue cuekin makin menjadi-jadi capernya. Tapi anehnya... kalau sehari lo ga muncul, roomchat gue berasa sepi banget.</p>
+          </div>
+          <div class="journal-card">
+            <span class="journal-badge">FILE 02 • THE TURNING POINT</span>
+            <img src="foto2.jpeg" class="journal-photo" alt="Foto Bulan 2">
+            <h4>PAP Penjebol Pertahanan</h4>
+            <p>Gue iseng bilang "lagi capek nih, semangatin kek". Ekspektasi gue paling diketawain. Eh dia malah kirim PAP mukanya sendiri: <em>"Tuh liat muka gue langsung seger kan lo?"</em>. Di situ pertahanan gue runtuh total. Fix gue naksir si bawel.</p>
+          </div>
+          <div class="journal-card">
+            <span class="journal-badge">FILE 03 • 10-05-26</span>
+            <img src="foto3.jpeg" class="journal-photo" alt="Foto Bulan 3">
+            <h4>Resmi Tapi Tetap Gelud</h4>
+            <p>Hari jadian kita. Tetap pake debat siapa yang suka duluan. Lo ngeyel bilang gue yang nembak, padahal jelas-jelas lo yang caper duluan dari awal wkwk. Tapi gapapa, yang penting si bawel akhirnya jadi punya gue.</p>
+          </div>
+          <div class="journal-card">
+            <span class="journal-badge">FILE 04 • LOVE LANGUAGE</span>
+            <img src="foto4.jpeg" class="journal-photo" alt="Foto Bulan 4">
+            <h4>Hobi Bikin Lo Nangis & Kesel</h4>
+            <p>Fase di mana gue makin hobi ngerjain lo sampe bibir lo maju 5 senti mau nangis. Lucu banget soalnya. Tapi ya gitu, gue yang bikin kesel, gue juga yang kelabakan meluk dan nyari cara biar lo senyum lagi.</p>
+          </div>
+          <div class="journal-card">
+            <span class="journal-badge">FILE 05 • PRESENT DAY</span>
+            <img src="foto5.jpeg" class="journal-photo" alt="Foto Bulan 5">
+            <h4>Hari Ini & Seterusnya ❤️</h4>
+            <p>5 bulan cepet banget ya Eyaa. Makasih udah bertahan sama sifat jahil gue. Debat hal gak penting kita jangan pernah ilang ya, gacor terus pokoknya!</p>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- 6. APP: GALERI POLAROID -->
+    <!-- 6. APP: GALERI (5 SLIDES CAROUSEL ESTETIK) -->
     <div class="screen app-window" id="galleryApp">
       <div class="app-header">
         <span class="back-btn" onclick="goHome()">‹ Home</span>
-        <span style="font-size: 14px; font-weight: 700; color: #82384e;">Kenangan Kita 📸</span>
+        <span style="font-size: 14px; font-weight: 700; color: #82384e;">Galeri Kenangan 📸</span>
         <span style="width: 40px;"></span>
       </div>
+
       <div class="app-body">
-        <div class="polaroid-grid">
-          <div class="polaroid"><img src="foto1.jpeg" alt="Bulan 1"><span>Bulan 1: Awal Mula</span></div>
-          <div class="polaroid"><img src="foto2.jpeg" alt="Bulan 2"><span>Bulan 2: PAP Pertama</span></div>
-          <div class="polaroid"><img src="foto3.jpeg" alt="Bulan 3"><span>Bulan 3: 10-05-26</span></div>
-          <div class="polaroid"><img src="foto4.jpeg" alt="Bulan 4"><span>Bulan 4: Tukang Ngambek</span></div>
+        <div class="slider-container" id="sliderContainer">
+          <!-- SLIDE 1 -->
+          <div class="slide-item active">
+            <img src="galeri1.jpeg" onerror="this.src='foto1.jpeg'" alt="Slide 1">
+            <div class="slide-caption">
+              <h4>Slide 01 • The Beginning</h4>
+              <p>"Dari yang awalnya saling sebel, sampai jadi orang yang paling ditunggu kabarnya."</p>
+            </div>
+          </div>
+
+          <!-- SLIDE 2 -->
+          <div class="slide-item">
+            <img src="galeri2.jpeg" onerror="this.src='foto2.jpeg'" alt="Slide 2">
+            <div class="slide-caption">
+              <h4>Slide 02 • That Unforgettable Smile</h4>
+              <p>"Momen PAP legendaris yang ngeruntuhin seluruh rasa gengsi gue."</p>
+            </div>
+          </div>
+
+          <!-- SLIDE 3 -->
+          <div class="slide-item">
+            <img src="galeri3.jpeg" onerror="this.src='foto3.jpeg'" alt="Slide 3">
+            <div class="slide-caption">
+              <h4>Slide 03 • 10-05-26</h4>
+              <p>"Titik di mana kita memutuskan buat melangkah berdua, ngelewatin semua hal bareng."</p>
+            </div>
+          </div>
+
+          <!-- SLIDE 4 -->
+          <div class="slide-item">
+            <img src="galeri4.jpeg" onerror="this.src='foto4.jpeg'" alt="Slide 4">
+            <div class="slide-caption">
+              <h4>Slide 04 • Silly Fights & Sweet Hugs</h4>
+              <p>"Debat hal sepele tiap hari, tapi ga pernah sedetik pun pengen udahan."</p>
+            </div>
+          </div>
+
+          <!-- SLIDE 5 -->
+          <div class="slide-item">
+            <img src="galeri5.jpeg" onerror="this.src='foto5.jpeg'" alt="Slide 5">
+            <div class="slide-caption">
+              <h4>Slide 05 • 150 Days With You</h4>
+              <p>"Terima kasih sudah bertahan sampai hari ini, si bawel kesayangan Pandu."</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- KONTROL NAVIGASI SLIDE -->
+        <div class="slider-nav">
+          <div class="nav-arrow" onclick="moveSlide(-1)">‹</div>
+          <div class="nav-dots" id="sliderDots">
+            <div class="nav-dot active"></div>
+            <div class="nav-dot"></div>
+            <div class="nav-dot"></div>
+            <div class="nav-dot"></div>
+            <div class="nav-dot"></div>
+          </div>
+          <div class="nav-arrow" onclick="moveSlide(1)">›</div>
+        </div>
+
+        <div style="text-align: center; margin-top: 25px;">
+          <button onclick="openApp('letterApp')" style="background: #82384e; color: #fff; border: none; padding: 12px 24px; border-radius: 20px; font-weight: 600; font-size: 12px; cursor: pointer; box-shadow: 0 4px 15px rgba(130, 56, 78, 0.25);">
+            Buka Surat Terakhir 💌 ➔
+          </button>
         </div>
       </div>
     </div>
 
-    <!-- 7. APP: SURAT DARI PANDU (REVEAL PRANK) -->
+    <!-- 7. APP: SURAT (FULL ENGLISH, PANJANG, & TULUS + 1 FOTO) -->
     <div class="screen app-window" id="letterApp">
       <div class="app-header">
         <span class="back-btn" onclick="goHome()">‹ Home</span>
-        <span style="font-size: 14px; font-weight: 700; color: #82384e;">Final Decryption 💌</span>
+        <span style="font-size: 14px; font-weight: 700; color: #82384e;">A Letter for Lune Jua 💌</span>
         <span style="width: 40px;"></span>
       </div>
-      <div class="app-body" style="text-align: center; padding: 25px 15px;">
-        <div style="font-size: 42px; margin-bottom: 10px;">🎉❤️</div>
-        <h3 style="color: #82384e; margin-bottom: 12px;">KENA PRANK! Happy 5 Months, Eyaa!</h3>
-        <p style="font-size: 12.5px; color: #555; line-height: 1.6; text-align: justify;">
-          "Hahahaha panik kan lo?! Gak ada hacker, gak ada kebocoran data, ini semua gue... Pandu Alistair cowok lo yang paling ganteng! Maaf ya udah bikin lo parno dan mau nangis, tapi kalau gak gini lo gak bakal buka arsip perjalanan 5 bulan kita satu per satu."
-        </p>
-        <p style="font-size: 12.5px; color: #555; line-height: 1.6; text-align: justify; margin-top: 10px;">
-          "Makasih ya buat 5 bulan yang luar biasa ini, si bawel. Dari awal kita musuhan, debat gak jelas, sampe sekarang lo jadi orang paling penting di hidup gue. I love you so much, Eyaa. Jangan marah ya abis ini gue beliin makanan wkwk!"
-        </p>
-        <button onclick="alert('Pandu: I love you, si cerewet! Happy 5 Months anniversary ❤️')" style="margin-top: 25px; padding: 12px 24px; background: #007aff; color: #fff; border: none; border-radius: 20px; font-weight: 600; cursor: pointer;">
-          Peluk Pandu Virtual 🫂✨
-        </button>
+
+      <div class="app-body">
+        <div class="letter-paper">
+          <!-- FOTO KHUSUS SURAT (surat.jpeg) -->
+          <img src="surat.jpeg" onerror="this.src='foto3.jpeg'" class="letter-photo" alt="Foto Surat">
+
+          <div class="letter-salutation">Dearest Lune Jua,</div>
+          
+          <div class="letter-body-en">
+            <p>If you are reading this right now, it means you have gently walked through every single footprint of our five months journey together. I know I spend most of my days teasing you, making you pout, and testing your patience until you threaten to block me in frustration. But beneath all the mischievous banter and endless little arguments, I want you to know how deeply and genuinely thankful I am for your presence in my life.</p>
+            <br>
+            <p>Five months might seem like a brief chapter to the rest of the world, but with you, every single day has felt like an unforgettable universe of its own. You broke past every wall I built around myself simply by being your loud, radiant, and endlessly caring self. You effortlessly turned my quietest, most exhausting evenings into moments overflowing with genuine comfort and laughter. In a world that is often chaotic and demanding, having you as my person has been the gentlest peace I could ever ask for.</p>
+            <br>
+            <p>Thank you for choosing to stay by my side, for putting up with all my playful antics, and for loving me in ways I never even knew I needed. No matter how passionately we argue over the most trivial things in life, my heart has already made its final decision: it will always choose you, over and over again, without a single hesitation.</p>
+            <br>
+            <p>Happy 5th Month Anniversary, my sweet Lune. Here is to 150 days of us, and to every endless tomorrow we have yet to create side by side.</p>
+          </div>
+
+          <div class="letter-sign">
+            With all my love and devotion,<br>
+            <strong>Pandu Alistair</strong>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -741,7 +917,10 @@
   <script>
     const CORRECT_PIN = "100526";
     let enteredPin = "";
+    let currentSlide = 0;
+    const totalSlides = 5;
 
+    /* PASSCODE FUNCTIONS */
     function showPasscode() {
       document.getElementById('lockMain').style.display = 'none';
       document.getElementById('passcodeView').style.display = 'flex';
@@ -758,9 +937,7 @@
       if (enteredPin.length < 6) {
         enteredPin += num;
         updateDots();
-        if (enteredPin.length === 6) {
-          setTimeout(checkPin, 150);
-        }
+        if (enteredPin.length === 6) setTimeout(checkPin, 150);
       }
     }
 
@@ -772,11 +949,8 @@
     function updateDots() {
       const dots = document.querySelectorAll('.dot');
       dots.forEach((dot, index) => {
-        if (index < enteredPin.length) {
-          dot.classList.add('filled');
-        } else {
-          dot.classList.remove('filled');
-        }
+        if (index < enteredPin.length) dot.classList.add('filled');
+        else dot.classList.remove('filled');
       });
     }
 
@@ -796,26 +970,44 @@
       }
     }
 
+    /* BGM BACKGROUND MUSIC TOGGLE */
+    function toggleBGM() {
+      const audio = document.getElementById('bgmAudio');
+      const btn = document.getElementById('bgmToggleBtn');
+      const text = document.getElementById('bgmText');
+
+      if (audio.paused) {
+        audio.play().then(() => {
+          btn.classList.add('active');
+          text.innerText = 'Pause Lagu';
+        }).catch(err => {
+          alert('Pastikan file lagu.mp3 sudah di-upload ke GitHub ya!');
+        });
+      } else {
+        audio.pause();
+        btn.classList.remove('active');
+        text.innerText = 'Play Lagu';
+      }
+    }
+
     /* BUKA APLIKASI */
     function openApp(appId) {
       document.getElementById('homescreen').style.display = 'none';
       document.getElementById(appId).style.display = 'flex';
       
       const vid = document.getElementById('cameraVideo');
+      const bgm = document.getElementById('bgmAudio');
 
       if (appId === 'cameraApp') {
         document.getElementById('statusBar').style.color = '#fff';
-        startCameraSequence(); // JALANKAN EFEK CEKREK + SCANNING
+        if (bgm && !bgm.paused) bgm.pause(); // Jeda musik saat kamera/video nyala
+        startCameraSequence();
       } else {
         document.getElementById('statusBar').style.color = '#2b2326';
-        if (vid) {
-          vid.pause();
-        }
+        if (vid) vid.pause();
       }
 
-      if (appId === 'chatApp') {
-        backToInbox();
-      }
+      if (appId === 'chatApp') backToInbox();
     }
 
     function goHome() {
@@ -825,12 +1017,49 @@
       document.getElementById('statusBar').style.color = '#2b2326';
 
       const vid = document.getElementById('cameraVideo');
-      if (vid) {
-        vid.pause();
+      if (vid) vid.pause();
+    }
+
+    /* KUIS CATATAN (OPSI A / B) */
+    function answerNotesQuiz(isOptionA) {
+      const gate = document.getElementById('notesQuizGate');
+      const content = document.getElementById('notesActualContent');
+      const notif = document.getElementById('notesTopNotif');
+
+      if (isOptionA) {
+        // Jawaban Benar!
+        gate.style.display = 'none';
+        content.style.display = 'block';
+
+        // Munculkan notifikasi drop-down untuk segera buka galeri
+        setTimeout(() => {
+          notif.style.display = 'block';
+        }, 1200);
+      } else {
+        // Jawaban Salah
+        gate.classList.add('shake');
+        setTimeout(() => {
+          gate.classList.remove('shake');
+          alert('Jawaban salah! Masa kamu gatau isi hati cowok kamu sendiri? Coba pilih lagi ya si bawel!');
+        }, 360);
       }
     }
 
-    /* KONTROL SUARA VIDEO DI KAMERA */
+    /* SLIDER GALERI (5 SLIDES) */
+    function moveSlide(direction) {
+      const slides = document.querySelectorAll('.slide-item');
+      const dots = document.querySelectorAll('.nav-dot');
+
+      slides[currentSlide].classList.remove('active');
+      dots[currentSlide].classList.remove('active');
+
+      currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+
+      slides[currentSlide].classList.add('active');
+      dots[currentSlide].classList.add('active');
+    }
+
+    /* KAMERA & VIDEO */
     function toggleVideoSound() {
       const vid = document.getElementById('cameraVideo');
       const btn = document.getElementById('soundBtn');
@@ -844,7 +1073,6 @@
       }
     }
 
-    /* EFEK CEKREK (FLASH) + SCANNING CYBER HACKER */
     function startCameraSequence() {
       const flash = document.getElementById('cameraFlash');
       const overlay = document.getElementById('scanOverlay');
@@ -852,19 +1080,14 @@
       const progress = document.getElementById('scanProgress');
       const vid = document.getElementById('cameraVideo');
 
-      // 1. Reset state
       overlay.style.display = 'flex';
       overlay.style.opacity = '1';
       progress.style.width = '0%';
       if (vid) vid.pause();
 
-      // 2. Efek Cekrek (Kilatan Cahaya Putih)
       flash.classList.add('flash-on');
-      setTimeout(() => {
-        flash.classList.remove('flash-on');
-      }, 150);
+      setTimeout(() => flash.classList.remove('flash-on'), 150);
 
-      // 3. Animasi Loading & Scanning Hacker
       let currentProgress = 0;
       const interval = setInterval(() => {
         currentProgress += 5;
@@ -880,7 +1103,6 @@
           status.innerText = '[✓] ACCESS GRANTED: PLAYING FILE';
         }
 
-        // 4. Selesai scan -> buka video
         if (currentProgress >= 100) {
           clearInterval(interval);
           setTimeout(() => {
@@ -897,7 +1119,7 @@
       }, 90);
     }
 
-    /* iMESSAGE NAVIGATION */
+    /* iMESSAGE CHAT NAVIGATION */
     function openChat(chatViewId) {
       document.getElementById('inboxView').style.display = 'none';
       document.getElementById('chatPanduView').style.display = 'none';
@@ -911,7 +1133,7 @@
       document.getElementById('inboxView').style.display = 'flex';
     }
 
-    /* SISTEM SPAM NOTIFIKASI BERTUBI-TUBI */
+    /* SPAM ATTACK */
     function triggerSpamAttack() {
       const container = document.getElementById('spamBanners');
       container.innerHTML = "";
