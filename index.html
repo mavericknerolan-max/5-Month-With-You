@@ -10,13 +10,13 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, 'Plus Jakarta Sans', sans-serif;
       -webkit-tap-highlight-color: transparent;
       user-select: none;
     }
 
     body {
-      background: #121013;
+      background: #0f0d11;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -78,9 +78,9 @@
 
     /* === 1. LOCKSCREEN === */
     #lockscreen {
-      background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.65)), url('lockscreen.jpeg') center/cover no-repeat;
+      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7)), url('lockscreen.jpeg') center/cover no-repeat;
       color: #fff;
-      padding: 75px 24px 30px;
+      padding: 75px 22px 30px;
       text-align: center;
       z-index: 100;
     }
@@ -88,16 +88,29 @@
     .lock-time { font-size: 68px; font-weight: 700; letter-spacing: -2px; }
     .lock-date { font-size: 14px; opacity: 0.85; margin-top: -6px; }
 
+    /* HACKED WARNING NOTIF */
     .lock-notif {
-      background: rgba(255, 255, 255, 0.18);
-      backdrop-filter: blur(15px);
+      background: rgba(20, 20, 25, 0.65);
+      backdrop-filter: blur(20px);
       padding: 14px 16px;
       border-radius: 20px;
-      border: 1px solid rgba(255,255,255,0.25);
-      margin-top: 50px;
+      border: 1px solid rgba(255, 69, 58, 0.4);
+      margin-top: 40px;
       text-align: left;
       cursor: pointer;
       animation: pulse 2s infinite;
+      box-shadow: 0 4px 20px rgba(255, 69, 58, 0.2);
+    }
+
+    .notif-header {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      color: #ff453a;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
     }
 
     /* PASSCODE VIEW */
@@ -154,17 +167,17 @@
     }
 
     .widget-box {
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(12px);
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(14px);
       border-radius: 22px;
       padding: 18px;
       margin-bottom: 25px;
       border: 1px solid rgba(255,255,255,0.9);
-      box-shadow: 0 10px 25px rgba(135, 75, 93, 0.12);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     }
 
-    .widget-box h3 { font-size: 15px; color: #82384e; margin-bottom: 4px; }
-    .widget-box p { font-size: 12px; color: #69565c; line-height: 1.4; }
+    .widget-box h3 { font-size: 14.5px; color: #ff3b30; margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
+    .widget-box p { font-size: 12px; color: #555; line-height: 1.45; }
 
     .apps-grid {
       display: grid;
@@ -182,18 +195,18 @@
       align-items: center;
       font-size: 26px;
       margin: 0 auto 6px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
       cursor: pointer;
       transition: transform 0.15s;
     }
 
     .app-icon:active { transform: scale(0.92); }
     .bg-notes { background: #ffeaa7; }
-    .bg-chat { background: #a8e6cf; }
+    .bg-chat { background: #007aff; color: #fff; }
     .bg-gallery { background: #dcedc1; }
     .bg-letter { background: #ffd3b6; }
 
-    .app-name { font-size: 11px; font-weight: 600; color: #44353a; }
+    .app-name { font-size: 11px; font-weight: 600; color: #333; }
 
     /* === 3. APP WINDOWS === */
     .app-window {
@@ -204,16 +217,103 @@
     }
 
     .app-header {
-      padding: 50px 18px 12px;
+      padding: 48px 16px 12px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border-bottom: 1px solid #ebd9dc;
-      background: #fff;
+      border-bottom: 1px solid #e5e5ea;
+      background: #f7f7f8;
     }
 
-    .back-btn { color: #82384e; font-size: 14px; font-weight: 600; cursor: pointer; }
+    .back-btn { color: #007aff; font-size: 14px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 3px; }
     .app-body { padding: 16px; overflow-y: auto; flex: 1; }
+
+    /* === iMESSAGE STYLE CHAT === */
+    #chatApp {
+      background: #ffffff;
+    }
+
+    .imessage-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .contact-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #8e8e93;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 700;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      margin-bottom: 3px;
+    }
+
+    .contact-name {
+      font-size: 12px;
+      font-weight: 600;
+      color: #000;
+    }
+
+    .contact-sub {
+      font-size: 10px;
+      color: #8e8e93;
+    }
+
+    .chat-timestamp {
+      text-align: center;
+      font-size: 11px;
+      color: #8e8e93;
+      margin: 12px 0 16px;
+      font-weight: 500;
+    }
+
+    /* iMESSAGE BUBBLES */
+    .imsg-row {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 10px;
+    }
+
+    .bubble {
+      max-width: 75%;
+      padding: 10px 14px;
+      font-size: 13.5px;
+      line-height: 1.4;
+      border-radius: 18px;
+      position: relative;
+      word-wrap: break-word;
+    }
+
+    /* EYA'S OUTGOING BUBBLE (iMessage Blue) */
+    .bubble-out {
+      background: #007aff;
+      color: #ffffff;
+      align-self: flex-end;
+      border-bottom-right-radius: 4px;
+    }
+
+    /* PANDU / UNKNOWN INCOMING BUBBLE (iMessage Grey) */
+    .bubble-in {
+      background: #e9e9eb;
+      color: #000000;
+      align-self: flex-start;
+      border-bottom-left-radius: 4px;
+    }
+
+    .msg-status {
+      font-size: 10px;
+      color: #8e8e93;
+      text-align: right;
+      margin-top: 3px;
+      margin-right: 4px;
+    }
 
     /* NOTES STYLING (AESTHETIC SCRAPBOOK) */
     .journal-card {
@@ -258,27 +358,6 @@
       font-size: 12.5px;
       color: #5c4f53;
       line-height: 1.6;
-    }
-    /* CHAT STYLING */
-    .chat-bubble {
-      max-width: 78%;
-      padding: 10px 14px;
-      font-size: 13px;
-      border-radius: 16px;
-      margin-bottom: 10px;
-      line-height: 1.4;
-    }
-    .chat-eyaa { background: #fff; align-self: flex-start; border-bottom-left-radius: 4px; border: 1px solid #eee; }
-    .chat-pandu { background: #82384e; color: #fff; align-self: flex-end; margin-left: auto; border-bottom-right-radius: 4px; }
-
-    .chat-pap {
-      width: 170px;
-      height: 210px;
-      border-radius: 14px;
-      object-fit: cover;
-      margin-top: 6px;
-      display: block;
-      background: #e0d0d5;
     }
 
     /* POLAROID GALLERY */
@@ -337,27 +416,30 @@
     <div class="island"></div>
 
     <div class="status-bar" id="statusBar">
-      <span>00:00</span>
+      <span>14:30</span>
       <span>5G 100%</span>
     </div>
 
-    <!-- 1. LOCKSCREEN -->
+    <!-- 1. LOCKSCREEN (PERINGATAN DI-HACK) -->
     <div class="screen" id="lockscreen">
       <div id="lockMain">
         <div class="lock-time">14:30</div>
-        <div class="lock-date">Today, November 2026</div>
+        <div class="lock-date">Senin, 5 Bulan Bersama ❤️</div>
 
+        <!-- NOTIFIKASI DI-HACK OLEH UNKNOWN -->
         <div class="lock-notif" onclick="showPasscode()">
-          <p style="font-size: 11px; opacity: 0.8; margin-bottom: 2px;">Message • si bawel</p>
-          <p style="font-size: 13px; font-weight: 600;">"PANDU bales ga?! Lo ngetawain gue lagi ya..."</p>
-          <p style="font-size: 11px; opacity: 0.85; margin-top: 4px;">Ketuk untuk buka kunci (Sandi 6 digit)</p>
+          <div class="notif-header">
+            <span>⚠️ SYSTEM WARNING • iMessage</span>
+          </div>
+          <p style="font-size: 13px; font-weight: 700; color: #fff;">Unknown: "Ponsel lo resmi gue retas, Eyaa."</p>
+          <p style="font-size: 11.5px; opacity: 0.85; margin-top: 4px; color: #eee;">Ketik sandi 6 digit untuk membuka kunci dan membaca petunjuknya...</p>
         </div>
       </div>
 
       <!-- KEYPAD PASSCODE -->
       <div id="passcodeView">
         <p style="font-size: 14px; font-weight: 600;">Masukkan Sandi</p>
-        <p style="font-size: 11px; opacity: 0.7; margin-top: 2px;">(Petunjuk: the day we start our love story together)</p>
+        <p style="font-size: 11px; opacity: 0.8; margin-top: 2px;">(Petunjuk: the day we start our love story together)</p>
 
         <div class="passcode-dots" id="dotsContainer">
           <div class="dot"></div><div class="dot"></div><div class="dot"></div>
@@ -384,18 +466,18 @@
     <!-- 2. HOMESCREEN -->
     <div class="screen" id="homescreen">
       <div class="widget-box">
-        <h3>All Memories We Make</h3>
-        <p>"From we hate and now we making in love haha"</p>
+        <h3>🔒 System Overridden by Pandu</h3>
+        <p>"Selamat datang di ponselmu yang baru, Eyaa. Semua pesan dan ingatan kita selama 5 bulan udah gue kunci di dalam aplikasi-aplikasi ini. Temukan semuanya."</p>
       </div>
 
       <div class="apps-grid">
-        <div class="app-item" onclick="openApp('notesApp')">
-          <div class="app-icon bg-notes">📝</div>
-          <div class="app-name">Catatan</div>
-        </div>
         <div class="app-item" onclick="openApp('chatApp')">
           <div class="app-icon bg-chat">💬</div>
           <div class="app-name">Pesan</div>
+        </div>
+        <div class="app-item" onclick="openApp('notesApp')">
+          <div class="app-icon bg-notes">📝</div>
+          <div class="app-name">Catatan</div>
         </div>
         <div class="app-item" onclick="openApp('galleryApp')">
           <div class="app-icon bg-gallery">📷</div>
@@ -408,7 +490,75 @@
       </div>
     </div>
 
-    <!-- 3. APP: NOTES (AESTHETIC SCRAPBOOK 5 BULAN) -->
+    <!-- 3. APP: iMESSAGE CHAT (POV EYA vs UNKNOWN / PANDU) -->
+    <div class="screen app-window" id="chatApp">
+      <div class="app-header">
+        <span class="back-btn" onclick="goHome()">‹ Messages</span>
+        <div class="imessage-header">
+          <div class="contact-avatar">👤</div>
+          <div class="contact-name">Unknown (Pandu?)</div>
+          <div class="contact-sub">iMessage</div>
+        </div>
+        <span style="width: 40px;"></span>
+      </div>
+
+      <div class="app-body">
+        <div class="chat-timestamp">Hari ini 14:28</div>
+
+        <!-- PERCAKAPAN HACK & ROMANTIS -->
+        <div class="imsg-row">
+          <div class="bubble bubble-in">Halo, Lune Jua.</div>
+        </div>
+
+        <div class="imsg-row">
+          <div class="bubble bubble-out">Siapa nih?? Dapet nomor gue dari mana anjir?!</div>
+          <div class="msg-status">Delivered</div>
+        </div>
+
+        <div class="imsg-row">
+          <div class="bubble bubble-in">Gausah panik. Ponsel lo resmi gue 'hack'. Semua akses aplikasi lo sekarang ada di kendali gue.</div>
+        </div>
+
+        <div class="imsg-row">
+          <div class="bubble bubble-out">Hah bercanda lo ya?! Jangan aneh-aneh deh, mau lo apa sih sebenernya?! 😡</div>
+          <div class="msg-status">Delivered</div>
+        </div>
+
+        <div class="imsg-row">
+          <div class="bubble bubble-in">Santai si bawel. Kalau lo mau sistem HP lo balik normal, lo harus jelajahi tiap aplikasi di HP lo sekarang.</div>
+        </div>
+
+        <div class="imsg-row">
+          <div class="bubble bubble-in">Ada Catatan, Galeri foto, sampai Surat rahasia. Semua arsip itu sengaja gue susun buat ngerangkum perjalanan kita.</div>
+        </div>
+
+        <div class="imsg-row">
+          <div class="bubble bubble-out">Bentar... "si bawel"... gaya ngetik kayak gini...</div>
+          <div class="msg-status">Delivered</div>
+        </div>
+
+        <div class="imsg-row">
+          <div class="bubble bubble-out">PANDU YA?! GAK LUCU ANJIR PANDU JANGAN BIKIN JANTUNGAN NAPA?! 😭</div>
+          <div class="msg-status">Delivered</div>
+        </div>
+
+        <div class="imsg-row">
+          <div class="bubble bubble-in">Hahaha ketauan juga. Pinter banget pacar gue.</div>
+        </div>
+
+        <div class="imsg-row">
+          <div class="bubble bubble-in">Happy 5 months, Eyaa. Sengaja gue retas HP lo biar lo buka satu-satu arsip kenangan kita dari Bulan 1 sampai hari ini. Coba buka aplikasi Catatan sekarang, baca pelan-pelan ya. Jangan nangis lo! ❤️</div>
+        </div>
+
+        <div class="imsg-row">
+          <div class="bubble bubble-out">PANDUUUU ISENG BANGET SUMPAH... TAPI GUE SALTING BANGET BENTAR GUE BACA DULU 🥺🤍</div>
+          <div class="msg-status">Read 14:30</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 4. APP: NOTES (AESTHETIC SCRAPBOOK 5 BULAN) -->
     <div class="screen app-window" id="notesApp">
       <div class="app-header">
         <span class="back-btn" onclick="goHome()">‹ Home</span>
@@ -460,28 +610,6 @@
       </div>
     </div>
 
-    <!-- 4. APP: CHAT ROOM (MOMEN PAP) -->
-    <div class="screen app-window" id="chatApp">
-      <div class="app-header">
-        <span class="back-btn" onclick="goHome()">‹ Home</span>
-        <span style="font-size: 14px; font-weight: 700; color: #82384e;">Eyaa Cerewet 🤍</span>
-        <span style="width: 40px;"></span>
-      </div>
-      <div class="app-body" style="display: flex; flex-direction: column;">
-        <div class="chat-bubble chat-pandu">Capek banget hari ini, semangatin napa.</div>
-        <div class="chat-bubble chat-eyaa">Dih? Tumben banget ngeluh ke gue wkwk</div>
-        <div class="chat-bubble chat-pandu">Yaudah kalo ga mau.</div>
-        <div class="chat-bubble chat-eyaa">
-          Bentar! Nih gue semangatin...
-          <!-- GANTI GAMBAR PAP DI BAWAH DENGAN FOTO EYAA / MUSE LEO -->
-          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop" class="chat-pap" alt="PAP Eyaa">
-        </div>
-        <div class="chat-bubble chat-eyaa">Tuh! Udah gue kasih pemandangan paling cakep sedunia, ga usah lebay ngeluh capek lagi lu wlee 😜</div>
-        <div class="chat-bubble chat-pandu">Dih najis pede banget lo bocil.</div>
-        <div class="chat-bubble chat-eyaa">TAPI LO SALTING KAN NGAKU LO?! 🫵😆</div>
-      </div>
-    </div>
-
     <!-- 5. APP: GALERI POLAROID -->
     <div class="screen app-window" id="galleryApp">
       <div class="app-header">
@@ -491,21 +619,20 @@
       </div>
       <div class="app-body">
         <div class="polaroid-grid">
-          <!-- GANTI LINK SRC DI BAWAH DENGAN FOTO ASLI MEREKA -->
           <div class="polaroid">
-            <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=400" alt="Bulan 1">
+            <img src="foto1.jpeg" alt="Bulan 1">
             <span>Bulan 1: Awal Mula</span>
           </div>
           <div class="polaroid">
-            <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400" alt="Bulan 2">
+            <img src="foto2.jpeg" alt="Bulan 2">
             <span>Bulan 2: PAP Pertama</span>
           </div>
           <div class="polaroid">
-            <img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=400" alt="Bulan 3">
+            <img src="foto3.jpeg" alt="Bulan 3">
             <span>Bulan 3: 10-05-26</span>
           </div>
           <div class="polaroid">
-            <img src="https://images.unsplash.com/photo-1522263842439-347f0722f2f7?w=400" alt="Bulan 4">
+            <img src="foto4.jpeg" alt="Bulan 4">
             <span>Bulan 4: Tukang Ngambek</span>
           </div>
         </div>
@@ -521,11 +648,11 @@
       </div>
       <div class="app-body" style="text-align: center; padding: 25px 15px;">
         <div style="font-size: 40px; margin-bottom: 10px;">🌹</div>
-        <h3 style="color: #82384e; margin-bottom: 12px;">Happy 5 Months, Si Bawel!</h3>
+        <h3 style="color: #82384e; margin-bottom: 12px;">Mission Completed, My Girl!</h3>
         <p style="font-size: 12.5px; color: #555; line-height: 1.6; text-align: justify;">
           "Gue mungkin bukan tipe cowok yang puitis atau romantis manis tiap hari. Kerjaan gue kebanyakan cuma ngeledek, jahilin lo sampe lo ngegas atau nangis gemes. Tapi asal lo tahu, dari semua orang di dunia ini, cuma lo yang bisa bikin gue se-jatuh hati ini. Tetap bawel ya di samping gue, jangan pernah capek ngadepin gue."
         </p>
-        <button onclick="alert('Pandu: I love you more than words can say, Eyaa. ❤️')" style="margin-top: 25px; padding: 12px 24px; background: #82384e; color: #fff; border: none; border-radius: 20px; font-weight: 600; cursor: pointer;">
+        <button onclick="alert('Pandu: I love you more than words can say, Eyaa. Happy 5 Months! ❤️')" style="margin-top: 25px; padding: 12px 24px; background: #007aff; color: #fff; border: none; border-radius: 20px; font-weight: 600; cursor: pointer;">
           Buka Pesan Terakhir ✨
         </button>
       </div>
